@@ -12,7 +12,7 @@ PG 결제창은 기본적으로 Javascript로 연동됩니다. 부트페이 Andr
 {% tab title="Android" %}
 bootpay 모듈은 [jipack](https://jitpack.io)을 통해 배포되었습니다. [bootpay github](https://github.com/bootpay/android)은 [이곳](https://github.com/bootpay/android)을 참조하세요.
 
-### Gradle을 통한 설치
+#### Gradle을 통한 설치
 
 ```groovy
 //build.gradle (project)
@@ -59,7 +59,7 @@ dependencies {
 }
 ```
 
-### AndroidManifest.xml 수정
+#### AndroidManifest.xml 수정
 
 ```markup
 <uses-permission android:name="android.permission.INTERNET"/>

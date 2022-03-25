@@ -251,7 +251,7 @@ if token['status'] is 200:
 {% endtab %}
 
 {% tab title="Java" %}
-### 설치하기
+#### 설치하기
 
 [Gradle](https://gradle.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-java) 코드 보기)
 
@@ -268,7 +268,7 @@ dependencies {
 ```
 {% endcode %}
 
-### 사용 예제
+#### 사용 예제
 
 ```java
 import kr.co.bootpay.Bootpay;
@@ -289,13 +289,13 @@ void getAccessToken() {
 {% endtab %}
 
 {% tab title="Go" %}
-### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
+#### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
 
 ```javascript
 go get github.com/bootpay/backend-go
 ```
 
-### 사용 예제
+#### 사용 예제
 
 ```go
 package main
@@ -323,7 +323,7 @@ func main() {
 {% endtab %}
 
 {% tab title="ASP.NET" %}
-#### 1. Visual Studio에서 추가하기
+**1. Visual Studio에서 추가하기**
 
 1\. 솔루션 탐색기(Solution Explorer) 열기\
 2\. 만드신 솔루션 프로젝트 우클릭\
@@ -331,7 +331,7 @@ func main() {
 4-1. '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
 4-2. 또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
 
-### 2. 사용 예제
+#### 2. 사용 예제
 
 ```javascript
 BootpayApi api = new BootpayApi("5b8f6a4d396fa665fdc2b5ea", "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=");

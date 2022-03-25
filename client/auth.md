@@ -492,7 +492,7 @@ https://api.bootpay.co.kr/receipt/5afd6be8e13f33616f2876ac
 {% endtab %}
 
 {% tab title="PHP" %}
-### 설치하기
+#### 설치하기
 
 [Composer](http://getcomposer.org)을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -500,10 +500,9 @@ https://api.bootpay.co.kr/receipt/5afd6be8e13f33616f2876ac
 composer require bootpay/backend-php
 ```
 
-### 사용 예제
+#### 사용 예제
 
 ```php
-
 <?php
 /*
  * 결제 검증 관련 예제입니다.
@@ -529,7 +528,7 @@ if ($response->status === 200) {
 {% endtab %}
 
 {% tab title="Ruby" %}
-### 설치하기
+#### 설치하기
 
 [Gemfile](https://rubygems.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -539,7 +538,7 @@ gem 'backend-ruby'
 
 위 라인 추가 후 `bundle install` 실행
 
-### 사용 예제
+#### 사용 예제
 
 ```php
 # 결제 검증하기 
@@ -561,13 +560,13 @@ end
 {% endtab %}
 
 {% tab title="Node.js" %}
-### NPM 통해 설치하기
+#### NPM 통해 설치하기
 
 ```c
 npm install bootpay-backend-nodejs
 ```
 
-### 사용예제
+#### 사용예제
 
 ```javascript
 async function certificate() {
@@ -591,7 +590,7 @@ async function certificate() {
 {% endtab %}
 
 {% tab title="Python" %}
-### 설치하기
+#### 설치하기
 
 [Pypl](https://pypi.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-python) 코드 보기)
 
@@ -599,7 +598,7 @@ async function certificate() {
 pip install bootpay 
 ```
 
-### 사용 예제
+#### 사용 예제
 
 ```python
 from bootpay import Bootpay
@@ -613,7 +612,7 @@ print(bootpay.certificate(receipt_id)) # 결제검증하기
 {% endtab %}
 
 {% tab title="Java" %}
-### 설치하기
+#### 설치하기
 
 [Gradle](https://gradle.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-java) 코드 보기)
 
@@ -630,7 +629,7 @@ dependencies {
 ```
 {% endcode %}
 
-### 사용 예제
+#### 사용 예제
 
 ```java
 import kr.co.bootpay.Bootpay;
@@ -650,13 +649,13 @@ public static void certificate() {
 {% endtab %}
 
 {% tab title="Go" %}
-### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
+#### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
 
 ```javascript
 go get github.com/bootpay/backend-go
 ```
 
-### 사용 예제
+#### 사용 예제
 
 ```go
 package main
@@ -685,7 +684,7 @@ func Certificate(api *bootpay.Api) {
 {% endtab %}
 
 {% tab title="ASP.NET" %}
-#### 1. Visual Studio에서 추가하기
+**1. Visual Studio에서 추가하기**
 
 1\. 솔루션 탐색기(Solution Explorer) 열기\
 2\. 만드신 솔루션 프로젝트 우클릭\
@@ -693,7 +692,7 @@ func Certificate(api *bootpay.Api) {
 4-1. '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
 4-2. 또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
 
-### 2. 사용 예제
+#### 2. 사용 예제
 
 ```javascript
 BootpayApi api = new BootpayApi("5b8f6a4d396fa665fdc2b5ea", "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=");
