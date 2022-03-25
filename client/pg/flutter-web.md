@@ -31,7 +31,7 @@ flutter web 빌드하면 web/index.html 파일이 생성됩니다. 해당 파일
 
 [bootpay\_api.js](https://github.com/bootpay/bootpay\_flutter/blob/main/example/web/bootpay\_api.js) 파일을 프로젝트 경로에 추가합니다. 파일 내용은 [링크](https://github.com/bootpay/bootpay\_flutter/blob/main/example/web/bootpay\_api.js)를 참조해주세요.
 
-![](<../../.gitbook/assets/스크린샷 2021-09-16 오후 1.56.01.png>)
+![](<../../.gitbook/assets/스크린샷 2021-09-16 오후 1.56.01.png>)
 
 위 사진을 참조하셔서 프로젝트 구조를 구성하시면 되겠습니다.
 
