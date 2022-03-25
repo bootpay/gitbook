@@ -8,7 +8,7 @@ Unity를 통해 배포된 android, ios 환경에서 PG결제가 가능하도록 
 
 현재 유니티 에셋스토어에는 `bootpay` 로 배포되어있습니다만 관리되지 않으므로,[ ](https://docs.bootpay.co.kr/unity/bootpay.unitypackage)[bootpay.unitypackage](https://github.com/bootpay/bootpay-unitypackage/raw/main/bootpay.unitypackage)를 이곳에서 직접 다운로드 받도록 합니다.
 
-![](<../../.gitbook/assets/스크린샷 2021-12-07 오전 11.26.55 (1).png>)
+![](<../../.gitbook/assets/스크린샷 2021-12-07 오전 11.26.55.png>)
 
 다운 받은 파일을 프로젝트에 드래그하여 인스톨 하면, 라이브러리와 \*\*샘플(Assets/Scenes/ButtonScript.cs)\*\*가 보입니다. BootpayViewObject (Assets/Plugins/BootpayViewObject.cs)는 수정하실 필요 없으시며, 결제연동은 **샘플 Script**를 참조하시면 되겠습니다.
 
@@ -166,7 +166,7 @@ public class ButtonScript : MonoBehaviour
     ```
 
     \
-    ![](<../../.gitbook/assets/스크린샷 2022-03-02 오전 9.14.52 (2) (1).png>)
+    ![](<../../.gitbook/assets/스크린샷 2022-03-02 오전 9.14.52 (2).png>)
 5. [gradle.properties](https://github.com/bootpay/unity-android-example/blob/main/gradle.properties) (Project Properties) 파일에 AndroidX 지원 설정을 추가합니다.\
    ![](<../../.gitbook/assets/스크린샷 2022-03-02 오전 10.01.43.png>)
 6. 필요시 unity 버전과 android gradle plugin 버전 [호환](https://docs.unity3d.com/Manual/android-gradle-overview.html)을 확인하여 [gradle 버전](https://github.com/bootpay/unity-android-example/blob/main/build.gradle)을 수정합니다.\
@@ -179,7 +179,7 @@ public class ButtonScript : MonoBehaviour
 2. export한 ios폴더의 Unity-iPhone.xcodeproj 파일을 열어 xcode를 실행합니다.
 3. Targets > Unity-iPhone > Signing & Capabilities 에서 개발자 프로파일, bundle identifier를 설정합니다\
    \
-   ![](<../../.gitbook/assets/스크린샷 2021-12-07 오전 9.13.03 (1).png>)![](<../../.gitbook/assets/스크린샷 2022-02-17 오전 11.36.37.png>)
+   ![](<../../.gitbook/assets/스크린샷 2021-12-07 오전 9.13.03.png>)![](<../../.gitbook/assets/스크린샷 2022-02-17 오전 11.36.37.png>)
 4. Targets > Unity-iPhone > Build Settings에서 Development Team 설정합니다 (build clean)\
    ![](<../../.gitbook/assets/스크린샷 2021-12-07 오전 9.13.16.png>)
 5. Targets > UnityFramework > General > Frameworks and Libraries에 WebKit.framework를 추가합니다.\
