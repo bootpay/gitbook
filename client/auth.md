@@ -2,13 +2,13 @@
 
 ![](<../.gitbook/assets/스크린샷 2021-07-21 오전 11.29.50 (1).png>)
 
-휴대폰 본인확인 서비스로 고객의 이름, 성별, 생년월일, 전화번호 등의 정보를 이통사로부터 얻어낼 수 있어 인증된 회원 서비스를 만들 수 있는 효과가 있습니다.&#x20;
+휴대폰 본인확인 서비스로 고객의 이름, 성별, 생년월일, 전화번호 등의 정보를 이통사로부터 얻어낼 수 있어 인증된 회원 서비스를 만들 수 있는 효과가 있습니다.
 
-## 1-1. Bootpay Client SDK 설치하기&#x20;
+## 1-1. Bootpay Client SDK 설치하기
 
 각 개발언어별로 정리된 [설치하기](auth.md#1-1.-bootpay-client-sdk)를 참조해주세요.
 
-## 1-2. 본인인창 띄우는 예제 코드&#x20;
+## 1-2. 본인인창 띄우는 예제 코드
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -154,7 +154,6 @@ class _MyAppState extends State<MyApp> {
 
 {% tab title="Android" %}
 ```
-
 public void goRequest(View v) {
 
     BootUser user = new BootUser().setPhone("010-1234-5678"); // 구매자 정보
@@ -230,7 +229,6 @@ public void goRequest(View v) {
                 }
             }).requestPayment();
 }
-
 ```
 {% endtab %}
 
@@ -288,7 +286,7 @@ Bootpay.requestPayment(viewController: self, payload: payload)
 {% endtabs %}
 
 {% hint style="info" %}
-&#x20;결제 진행 상태에 따라 LifeCycle 함수가 실행됩니다. 각 함수에 대한 상세 설명은 아래를 참고하세요.
+결제 진행 상태에 따라 LifeCycle 함수가 실행됩니다. 각 함수에 대한 상세 설명은 아래를 참고하세요.
 {% endhint %}
 
 {% tabs %}
@@ -300,7 +298,7 @@ Bootpay.requestPayment(viewController: self, payload: payload)
 
 에러가 난 경우 해당 함수를 통해 관련 에러 메세지를 사용자에게 보여줄 수 있습니다.
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -312,9 +310,9 @@ Bootpay.requestPayment(viewController: self, payload: payload)
 {% endtab %}
 
 {% tab title="cancel 함수" %}
-결제 진행 중 사용자가 PG 결제창에서 취소 혹은 닫기 버튼을 눌러 나온 경우 입니다. ****&#x20;
+결제 진행 중 사용자가 PG 결제창에서 취소 혹은 닫기 버튼을 눌러 나온 경우 입니다. \*\*\*\*
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -328,7 +326,7 @@ Bootpay.requestPayment(viewController: self, payload: payload)
 {% tab title="ready 함수" %}
 가상계좌 발급이 완료되면 호출되는 함수입니다. 가상계좌는 다른 결제와 다르게 입금할 계좌 번호 발급 이후 입금 후에 Feedback URL을 통해 통지가 됩니다. 발급된 가상계좌 정보를 ready 함수를 통해 확인하실 수 있습니다.
 
-&#x20; data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -368,7 +366,7 @@ Bootpay.requestPayment(viewController: self, payload: payload)
 
 **\* 페이앱, 페이레터 PG는 이 함수가 실행되지 않고 바로 결제가 승인되는 PG 입니다. 참고해주시기 바랍니다.**
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -414,9 +412,9 @@ PG에서 거래 승인 이후에 호출 되는 함수입니다. 결제 완료 �
 {% endtab %}
 {% endtabs %}
 
-## 2-1. Bootpay Server SDK 설치하기&#x20;
+## 2-1. Bootpay Server SDK 설치하기
 
-## **2-2. 본인인증 REST API로 검증하기**&#x20;
+## **2-2. 본인인증 REST API로 검증하기**
 
 본인인증이 완료되면 클라이언트 SDK의 done 커스텀 함수 내에서 receipt\_id를 받고 이 값을 가지고 REST API로 유효성 검사를 할 수 있습니다. 전화번호, 성명, 생년월일등의 민감한 데이터를 가져오기 때문에 반드시 서버에서 수행되어야 합니다.
 
@@ -425,12 +423,12 @@ PG에서 거래 승인 이후에 호출 되는 함수입니다. 결제 완료 �
 
 {% endswagger-description %}
 
-{% swagger-parameter in="header" name="Authorization" type="string" %}
- 부트페이에서 발급받은 토큰 값  
+{% swagger-parameter in="header" name="Authorization" type="string" required="false" %}
+부트페이에서 발급받은 토큰 값
 {% endswagger-parameter %}
 
-{% swagger-parameter in="query" name="receipt_id" type="string" %}
- 부트페이에서 받은 거래 영수증 id 
+{% swagger-parameter in="query" name="receipt_id" type="string" required="false" %}
+부트페이에서 받은 거래 영수증 id
 {% endswagger-parameter %}
 
 {% swagger-response status="200" description="" %}
@@ -484,20 +482,17 @@ PG에서 거래 승인 이후에 호출 되는 함수입니다. 결제 완료 �
 {% endswagger-response %}
 {% endswagger %}
 
-
-
 {% tabs %}
 {% tab title="CURL" %}
 ```perl
 curl -H "Content-Type: application/json" \
 -H "Authorization: d6941c650061e3eaddd3f4718ab63e0983c1f6a0a0a01370c1b1ffa90ddd0b51" \
 https://api.bootpay.co.kr/receipt/5afd6be8e13f33616f2876ac
-
 ```
 {% endtab %}
 
 {% tab title="PHP" %}
-## 설치하기&#x20;
+### 설치하기
 
 [Composer](http://getcomposer.org)을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -505,10 +500,9 @@ https://api.bootpay.co.kr/receipt/5afd6be8e13f33616f2876ac
 composer require bootpay/backend-php
 ```
 
-## 사용 예제&#x20;
+### 사용 예제
 
 ```php
-
 
 <?php
 /*
@@ -535,7 +529,7 @@ if ($response->status === 200) {
 {% endtab %}
 
 {% tab title="Ruby" %}
-## 설치하기
+### 설치하기
 
 [Gemfile](https://rubygems.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -543,9 +537,9 @@ if ($response->status === 200) {
 gem 'backend-ruby'
 ```
 
-위 라인 추가 후 `bundle install` 실행&#x20;
+위 라인 추가 후 `bundle install` 실행
 
-## 사용 예제
+### 사용 예제
 
 ```php
 # 결제 검증하기 
@@ -567,13 +561,13 @@ end
 {% endtab %}
 
 {% tab title="Node.js" %}
-## NPM 통해 설치하기&#x20;
+### NPM 통해 설치하기
 
 ```c
 npm install bootpay-backend-nodejs
 ```
 
-## 사용예제&#x20;
+### 사용예제
 
 ```javascript
 async function certificate() {
@@ -597,7 +591,7 @@ async function certificate() {
 {% endtab %}
 
 {% tab title="Python" %}
-## 설치하기
+### 설치하기
 
 [Pypl](https://pypi.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-python) 코드 보기)
 
@@ -605,7 +599,7 @@ async function certificate() {
 pip install bootpay 
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```python
 from bootpay import Bootpay
@@ -619,7 +613,7 @@ print(bootpay.certificate(receipt_id)) # 결제검증하기
 {% endtab %}
 
 {% tab title="Java" %}
-## 설치하기
+### 설치하기
 
 [Gradle](https://gradle.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-java) 코드 보기)
 
@@ -636,7 +630,7 @@ dependencies {
 ```
 {% endcode %}
 
-## 사용 예제
+### 사용 예제
 
 ```java
 import kr.co.bootpay.Bootpay;
@@ -656,13 +650,13 @@ public static void certificate() {
 {% endtab %}
 
 {% tab title="Go" %}
-## 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
+### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
 
 ```javascript
 go get github.com/bootpay/backend-go
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```go
 package main
@@ -691,15 +685,15 @@ func Certificate(api *bootpay.Api) {
 {% endtab %}
 
 {% tab title="ASP.NET" %}
-### 1. Visual Studio에서 추가하기
+#### 1. Visual Studio에서 추가하기
 
-1\. 솔루션 탐색기(Solution Explorer) 열기 \
-2\. 만드신 솔루션 프로젝트 우클릭 \
-3\. Manage Nuget Packages 클릭 \
-4-1.  '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
-4-2.  또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
+1\. 솔루션 탐색기(Solution Explorer) 열기\
+2\. 만드신 솔루션 프로젝트 우클릭\
+3\. Manage Nuget Packages 클릭\
+4-1. '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
+4-2. 또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
 
-## 2. 사용 예제&#x20;
+### 2. 사용 예제
 
 ```javascript
 BootpayApi api = new BootpayApi("5b8f6a4d396fa665fdc2b5ea", "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=");
@@ -722,7 +716,6 @@ return Ok(json);
 {% endtab %}
 {% endtabs %}
 
-## 기술문의&#x20;
+## 기술문의
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
-
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.

@@ -2,13 +2,13 @@
 
 결제취소 요청시 `price`를 지정하지 않을 경우 전액 취소 처리됩니다.
 
-결제취소 요청시 `price`를 지정하면 부분취소가 가능합니다. \
+결제취소 요청시 `price`를 지정하면 부분취소가 가능합니다.\
 `(지원가능 PG사: inicis, kcp, danal, payletter, nicepay, kakao, payco)`
 
 {% hint style="info" %}
 **부분취소 중복 요청 막기**
 
-개발사의 실수로 인해서 부분취소를 중복 요청하는 불상사가 생길 수 있습니.  이를 방지하고자 부트페이는 동일한 receipt\_id에 대해  10초간 부분취소 중복방지 기능이 있습니다.  활성화 후 사용하시길 추천합니다.
+개발사의 실수로 인해서 부분취소를 중복 요청하는 불상사가 생길 수 있습니. 이를 방지하고자 부트페이는 동일한 receipt\_id에 대해 10초간 부분취소 중복방지 기능이 있습니다. 활성화 후 사용하시길 추천합니다.
 {% endhint %}
 
 ## **결제 취소하기 REST API**
@@ -18,52 +18,44 @@
 
 {% endswagger-description %}
 
-{% swagger-parameter in="header" name="Access Token" type="string" %}
- 
-
+{% swagger-parameter in="header" name="Access Token" type="string" required="false" %}
 **부트페이에서 발급받은토큰 값**
-
-  
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="receipt_id" type="string" %}
+{% swagger-parameter in="body" name="receipt_id" type="string" required="false" %}
 부트페이에서 발급받은 거래 영수증 id
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="cancel_id" type="string" %}
+{% swagger-parameter in="body" name="cancel_id" type="string" required="false" %}
 부분 취소 중복을 막기 위한 값
 
-\
+\\
 
-
- 가맹점에서 지정하는 cancel_id를 보내면, 실수로 중복 요청한 경우 취소가 되지 않도록 방지처리 
+가맹점에서 지정하는 cancel\_id를 보내면, 실수로 중복 요청한 경우 취소가 되지 않도록 방지처리
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="price" type="string" %}
+{% swagger-parameter in="body" name="price" type="string" required="false" %}
 부분 취소할 취소금액, 금액을 적지 않으면 전책 취소 처리 됨
 
-\
+\\
 
+\* 1,000원보다 더 큰 값이어야 함
 
-\* 1,000원보다 더 큰 값이어야 함 
+\\
 
-\
+\* 일부 PG사만 가능
 
-
-\* 일부 PG사만 가능 
-
-\
-
+\\
 
 (inicis, kcp, danal, payletter, nicepay, kakao, payco)
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="name" type="string" %}
+{% swagger-parameter in="body" name="name" type="string" required="false" %}
 취소자 이름
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="reason" type="string" %}
-취소 사유 
+{% swagger-parameter in="body" name="reason" type="string" required="false" %}
+취소 사유
 {% endswagger-parameter %}
 
 {% swagger-response status="200" description="" %}
@@ -98,7 +90,7 @@
 | revoked\_at            | string  | 취소된 시각 ( +09:00 기준 )       |
 | tid                    | string  | PG에서 사용하는 거래 ID            |
 
-## 언어별 예제&#x20;
+## 언어별 예제
 
 {% tabs %}
 {% tab title="CURL" %}
@@ -111,7 +103,7 @@ curl -H "Content-Type: application/json" \
 {% endtab %}
 
 {% tab title="PHP" %}
-## 설치하기&#x20;
+### 설치하기
 
 [Composer](http://getcomposer.org)을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -119,10 +111,9 @@ curl -H "Content-Type: application/json" \
 composer require bootpay/backend-php
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```php
-
 <?php 
 /*
  * 취소 테스트 예제 입니다.
@@ -161,7 +152,7 @@ if ($response->status === 200) {
 {% endtab %}
 
 {% tab title="Ruby" %}
-## 설치하기&#x20;
+### 설치하기
 
 Gemfile을 통해 설치 (Github 주소)
 
@@ -169,9 +160,9 @@ Gemfile을 통해 설치 (Github 주소)
 gem 'backend-ruby'
 ```
 
-위 라인 추가 후 `bundle install` 실행&#x20;
+위 라인 추가 후 `bundle install` 실행
 
-## 사용 예제
+### 사용 예제
 
 ```ruby
 require 'bootpay-rest-client'
@@ -195,18 +186,17 @@ if api.request_access_token.success?
     )
     puts  response.data.to_json
 end
-
 ```
 {% endtab %}
 
 {% tab title="Node.js" %}
-## NPM 통해 설치하기&#x20;
+### NPM 통해 설치하기
 
 ```c
 npm install bootpay-backend-nodejs
 ```
 
-## 사용예제&#x20;
+### 사용예제
 
 ```javascript
 async function cancel() {
@@ -236,11 +226,11 @@ async function cancel() {
 {% endtab %}
 
 {% tab title="Python" %}
-## 설치하기&#x20;
+### 설치하기
 
 [Pypl](https://pypi.org)을 통해 설치 ([github](https://github.com/bootpay/backend-python) 코드 보기)
 
-## 사용 예
+### 사용 예
 
 ```python
 from bootpay import Bootpay
@@ -256,7 +246,7 @@ result = bootpay.cancel(
 {% endtab %}
 
 {% tab title="Java" %}
-## 설치하기&#x20;
+### 설치하기
 
 gradle을 통해 설치
 
@@ -273,7 +263,7 @@ dependencies {
 ```
 {% endcode %}
 
-## 사용 예제&#x20;
+### 사용 예제
 
 ```java
 import kr.co.bootpay.Bootpay;
@@ -306,13 +296,13 @@ public static void receiptCancel() {
 {% endtab %}
 
 {% tab title="Go" %}
-## 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
+### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
 
 ```javascript
 go get github.com/bootpay/backend-go
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```go
 package main
@@ -345,15 +335,15 @@ func ReceiptCancel(api *bootpay.Api) {
 {% endtab %}
 
 {% tab title="ASP.NET" %}
-### 1. Visual Studio에서 추가하기
+#### 1. Visual Studio에서 추가하기
 
-1\. 솔루션 탐색기(Solution Explorer) 열기 \
-2\. 만드신 솔루션 프로젝트 우클릭 \
-3\. Manage Nuget Packages 클릭 \
-4-1.  '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
-4-2.  또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
+1\. 솔루션 탐색기(Solution Explorer) 열기\
+2\. 만드신 솔루션 프로젝트 우클릭\
+3\. Manage Nuget Packages 클릭\
+4-1. '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
+4-2. 또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
 
-## 2. 사용 예제&#x20;
+### 2. 사용 예제
 
 ```javascript
 BootpayApi api = new BootpayApi("5b8f6a4d396fa665fdc2b5ea", "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=");
@@ -386,29 +376,27 @@ return Ok(json);
 {% endtab %}
 {% endtabs %}
 
-## 결제취소가 안 될 경우&#x20;
+## 결제취소가 안 될 경우
 
-### **테스트 결제모드일 경우**&#x20;
+### **테스트 결제모드일 경우**
 
-테스트 결제모드 일 경우 PG사의 스케쥴러의 의해 당일 취소처리 될 수 있습니다. 이럴 경우 부트페이 API를 통해 취소된 건이 아니기 때문에 부트페이 전산에 반영되지 않아 결제완료 상태로 남을 수 있으며, 취소 요청시 '**기취소된 건입니다'**와 같은 응답결과가 리턴됩니다. 취소된 건이니 다시 취소요청하실 필요는 없으십니다.&#x20;
+테스트 결제모드 일 경우 PG사의 스케쥴러의 의해 당일 취소처리 될 수 있습니다. 이럴 경우 부트페이 API를 통해 취소된 건이 아니기 때문에 부트페이 전산에 반영되지 않아 결제완료 상태로 남을 수 있으며, 취소 요청시 '\*\*기취소된 건입니다'\*\*와 같은 응답결과가 리턴됩니다. 취소된 건이니 다시 취소요청하실 필요는 없으십니다.
 
-### **실결제 모드일 경우**&#x20;
+### **실결제 모드일 경우**
 
-1. **기취소된 건 일 경우** \
-   PG사 전산에서 관리자에 의해 수동 또는 강제취소 되었을 경우, Bootpay API를 통해 취소요청 된 건이 아니기 때문에 부트페이 전산과 결제상태가 동기화 되지 않습니다. 이때 먼저 PG사 전산에서 해당 결제건이 취소 상태가 아닌지 확인이 필요합니다.\
+1. **기취소된 건 일 경우**\
+   PG사 전산에서 관리자에 의해 수동 또는 강제취소 되었을 경우, Bootpay API를 통해 취소요청 된 건이 아니기 때문에 부트페이 전산과 결제상태가 동기화 되지 않습니다. 이때 먼저 PG사 전산에서 해당 결제건이 취소 상태가 아닌지 확인이 필요합니다.\\
+2. **PG사 내부정책 - 정산예정 금액이 취소금액 보다 큰 경우**\
+   결제취소 API 요청 시 PG사로부터 결제취소가 승인나지 않을 수 있습니다. 일반적으로 상계취소 처리 조건이 성립하지 않는 경우가 그러합니다. (PG사로부터 승인거절된 건인지는 [결제오류 확인하기](../advance/error-check.md)를 참조하세요)\\
+3. PG사 내부정책 - 가맹점별 취소요청금액의 한도가 있을 경우\
+   PG사에서 가맹점별 리스크 관리 정책으로 내부적으로 취소한도가 있을 수 있습니다. 이때 취소한도 금액보다 취소금액이 클 경우 PG사의 정책에 의해 취소요청이 반려될 수 있습니다. 이에 대한 문의는 이용하시는 PG사에 하시면 되겠습니다.
 
-2. **PG사 내부정책 - 정산예정 금액이 취소금액 보다 큰 경우** \
-   결제취소 API 요청 시 PG사로부터 결제취소가 승인나지 않을 수 있습니다. 일반적으로 상계취소 처리 조건이 성립하지 않는 경우가 그러합니다. (PG사로부터 승인거절된 건인지는 [결제오류 확인하기](../advance/error-check.md)를 참조하세요)\
-
-3. PG사 내부정책 - 가맹점별 취소요청금액의 한도가 있을 경우 \
-   PG사에서 가맹점별 리스크 관리 정책으로 내부적으로 취소한도가 있을 수 있습니다. 이때 취소한도 금액보다 취소금액이 클 경우 PG사의 정책에 의해 취소요청이 반려될 수 있습니다. 이에 대한 문의는 이용하시는 PG사에 하시면 되겠습니다.&#x20;
-
-## PG사 전산에 부트페이 IP 등록하기&#x20;
+## PG사 전산에 부트페이 IP 등록하기
 
 KCP를 이용하실 경우 부트페이 IP를 KCP 전산에 등록해야 결제취소가 가능하십니다.
 
 [KCP전산](https://admin8.kcp.co.kr)에 로그인 하신 후 `상점정보관리 → 정보변경 → 결제서버 IP 설정`에서 부트페이 Outbound IP인 223.130.82.4 를 추가해주시면 되겠습니다.
 
-## 기술문의&#x20;
+## 기술문의
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.

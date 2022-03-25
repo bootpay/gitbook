@@ -8,7 +8,7 @@
 BootPay.transactionConfirm(data);
 ```
 
-위 방법은 클라이언트 사이드에서 승인요청하는 것이기 때문에 서버에서 엄밀한 트랜젝션을 통해 결제 승인을 하는 방식은 아닙니다.&#x20;
+위 방법은 클라이언트 사이드에서 승인요청하는 것이기 때문에 서버에서 엄밀한 트랜젝션을 통해 결제 승인을 하는 방식은 아닙니다.
 
 {% hint style="warning" %}
 **클라이언트에서 지원하는 transaction의 문제점이 무엇인가요?**
@@ -38,7 +38,7 @@ BootPay.transactionConfirm(data);
 
 SDK에서 confirm 함수 ( 결제 승인 이전 호출 )가 호출되면 confirm 함수에서 받은 receipt\_id를 가맹점 서버로 보냅니다. 이때 서버에서는 [결제검증](https://docs.bootpay.co.kr/deep/submit)을 해서 결제한 금액이 일치하는지와 status 값이 2 ( 결제 승인전 상태 값 )인지 확인 후 가맹점 서버 내에서 필요한 트랜젝션 ( 재고 차감이나 혹은 결제에 관련된 상태값 )을 시작합니다.
 
-**STEP2. 서버 승인 요청하기**&#x20;
+**STEP2. 서버 승인 요청하기**
 
 {% tabs %}
 {% tab title="CURL" %}
@@ -46,12 +46,11 @@ SDK에서 confirm 함수 ( 결제 승인 이전 호출 )가 호출되면 confirm
 curl -H "Content-Type: application/json" \
 -H "Authorization: d6941c650061e3eaddd3f4718ab63e0983c1f6a0a0a01370c1b1ffa90ddd0b51" \
 https://api.bootpay.co.kr/receipt/5afd6be8e13f33616f2876ac
-
 ```
 {% endtab %}
 
 {% tab title="PHP" %}
-## 설치하기&#x20;
+### 설치하기
 
 [Composer](http://getcomposer.org)을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -59,7 +58,7 @@ https://api.bootpay.co.kr/receipt/5afd6be8e13f33616f2876ac
 composer require bootpay/backend-php
 ```
 
-## 사용 예제&#x20;
+### 사용 예제
 
 ```php
 <?php
@@ -94,7 +93,7 @@ if ($response->status === 200) {
 {% endtab %}
 
 {% tab title="Ruby" %}
-## 설치하기
+### 설치하기
 
 [Gemfile](https://rubygems.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -102,9 +101,9 @@ if ($response->status === 200) {
 gem 'backend-ruby'
 ```
 
-위 라인 추가 후 `bundle install` 실행&#x20;
+위 라인 추가 후 `bundle install` 실행
 
-## 사용 예제
+### 사용 예제
 
 ```php
 # 결제 검증하기 
@@ -124,13 +123,13 @@ end
 {% endtab %}
 
 {% tab title="Node.js" %}
-## NPM 통해 설치하기&#x20;
+### NPM 통해 설치하기
 
 ```c
 npm install bootpay-backend-nodejs
 ```
 
-## 사용예제&#x20;
+### 사용예제
 
 ```javascript
 async function submit() {
@@ -154,7 +153,7 @@ async function submit() {
 {% endtab %}
 
 {% tab title="Python" %}
-## 설치하기
+### 설치하기
 
 [Pypl](https://pypi.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-python) 코드 보기)
 
@@ -162,7 +161,7 @@ async function submit() {
 pip install bootpay 
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```python
 from bootpay import Bootpay
@@ -176,7 +175,7 @@ print(result)
 {% endtab %}
 
 {% tab title="Java" %}
-## 설치하기
+### 설치하기
 
 [Gradle](https://gradle.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-java) 코드 보기)
 
@@ -193,7 +192,7 @@ dependencies {
 ```
 {% endcode %}
 
-## 사용 예제
+### 사용 예제
 
 ```java
 import kr.co.bootpay.Bootpay;
@@ -214,13 +213,13 @@ public static void submit() {
 {% endtab %}
 
 {% tab title="Go" %}
-## 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
+### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
 
 ```javascript
 go get github.com/bootpay/backend-go
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```go
 package main
@@ -251,15 +250,15 @@ func ServerSubmit(api *bootpay.Api) {
 {% endtab %}
 
 {% tab title="ASP.NET" %}
-### 1. Visual Studio에서 추가하기
+#### 1. Visual Studio에서 추가하기
 
-1\. 솔루션 탐색기(Solution Explorer) 열기 \
-2\. 만드신 솔루션 프로젝트 우클릭 \
-3\. Manage Nuget Packages 클릭 \
-4-1.  '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
-4-2.  또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
+1\. 솔루션 탐색기(Solution Explorer) 열기\
+2\. 만드신 솔루션 프로젝트 우클릭\
+3\. Manage Nuget Packages 클릭\
+4-1. '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
+4-2. 또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
 
-## 2. 사용 예제&#x20;
+### 2. 사용 예제
 
 ```javascript
 BootpayApi api = new BootpayApi("5b8f6a4d396fa665fdc2b5ea", "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=");
@@ -279,6 +278,6 @@ return Ok(json);
 {% endtab %}
 {% endtabs %}
 
-## 기술문의&#x20;
+## 기술문의
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.

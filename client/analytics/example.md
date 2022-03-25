@@ -1,14 +1,14 @@
 # 연동 예제
 
-통계는 클라이언트 SDK로 연동됩니다. 결제요청 시 통계를 위한 추가 데이터를 보내주시거나, 페이지 이동시 통계전용 함수를 호출해주시면 되겠습니다.&#x20;
+통계는 클라이언트 SDK로 연동됩니다. 결제요청 시 통계를 위한 추가 데이터를 보내주시거나, 페이지 이동시 통계전용 함수를 호출해주시면 되겠습니다.
 
-## Bootpay 설치하기&#x20;
+## Bootpay 설치하기
 
-설치하기는 [이곳](broken-reference)을 참조해주세요. 사용하실 언어별로 정리되어있으니 살펴보시면 되겠습니다.
+설치하기는 [이곳](broken-reference/)을 참조해주세요. 사용하실 언어별로 정리되어있으니 살펴보시면 되겠습니다.
 
-## 1. 회원 추적하기&#x20;
+## 1. 회원 추적하기
 
-로그인한 사용자의 정보를 채워 함수를 실행합니다. 로그인 직 후 한번만 호출하시면 되겠습니다.&#x20;
+로그인한 사용자의 정보를 채워 함수를 실행합니다. 로그인 직 후 한번만 호출하시면 되겠습니다.
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -57,7 +57,7 @@ BootpayAnalytics.userTrace(
 {% endtab %}
 
 {% tab title="Flutter" %}
-## Bootpay 설치하기&#x20;
+### Bootpay 설치하기
 
 ```java
 ...
@@ -67,9 +67,9 @@ dependencies:
 ...
 ```
 
-프로젝트 폴더에서 flutter packages get 을 수행하면 설치됩니다.&#x20;
+프로젝트 폴더에서 flutter packages get 을 수행하면 설치됩니다.
 
-## web/index.html 설정하기&#x20;
+### web/index.html 설정하기
 
 flutter web 빌드하면 web/index.html 파일이 생성됩니다. 해당 파일 Header에 아래 script를 추가해주세요.
 
@@ -84,7 +84,7 @@ bootpay\_api.js 파일을 프로젝트 경로에 추가합니다. 파일 내용�
 
 위 사진을 참조하셔서 프로젝트 구조를 구성하시면 되겠습니다.
 
-## 1. 회원 추적하기&#x20;
+### 1. 회원 추적하기
 
 ```dart
 //통계용 함수
@@ -130,13 +130,13 @@ await userTrace(
 특정 고객군을 타겟으로 마케팅을 하고 싶은 경우 \* 구매충성도, 방문횟수에 따른 통계등을 이용한 방법으로 해당 사용자에게 프로모션 혹은 이벤트 정보를 발송하기 위한 용도로 사용됩니다. 이 과정에서 제 3자 마케팅 동의가 반드시 필요합니다. 만약 마케팅을 하지 않으신다면, 이메일 정보와 연락처를 안보내시면 됩니다.
 {% endhint %}
 
-## 2. 페이지 방문  &#x20;
+## 2. 페이지 방문
 
-url이 변경되거나 앱에서 화면이 전환 될 경우 페이지 추적을  원할 경우 이 함수를 호출합니다.&#x20;
+url이 변경되거나 앱에서 화면이 전환 될 경우 페이지 추적을 원할 경우 이 함수를 호출합니다.
 
 {% tabs %}
 {% tab title="JavaScript" %}
-일반 페이지의 경우&#x20;
+일반 페이지의 경우
 
 ```
 document.addEventListener('DOMContentLoaded', function() {
@@ -150,7 +150,7 @@ $(document).ready(function() {
 });
 ```
 
-상품 판매 페이지의 경우 &#x20;
+상품 판매 페이지의 경우
 
 ```
 document.addEventListener('DOMContentLoaded', function() {
@@ -253,7 +253,7 @@ BootpayAnalytics.pageTrace(
 {% endtab %}
 
 {% tab title="Flutter" %}
-일반 페이지의 경우&#x20;
+일반 페이지의 경우
 
 ```
 bootpayAnalyticsPageTrace() async {
@@ -270,7 +270,7 @@ bootpayAnalyticsPageTrace() async {
   }
 ```
 
-상품 판매 페이지의 경우 &#x20;
+상품 판매 페이지의 경우
 
 ```
 bootpayAnalyticsPageTrace() async {
@@ -338,11 +338,9 @@ await pageTrace(
 {% endtab %}
 {% endtabs %}
 
+## 3. 결제호출 시 데이터 추가
 
-
-## 3. 결제호출 시 데이터 추가&#x20;
-
-결제시점부터 분석할 데이터를 추가 하고자 반 한다면 아래와 같이 상품정보, 회원정보를 넣어주시면 되겠습니다.&#x20;
+결제시점부터 분석할 데이터를 추가 하고자 반 한다면 아래와 같이 상품정보, 회원정보를 넣어주시면 되겠습니다.
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -671,6 +669,6 @@ if(bootpay != null && bootpay.current != null) bootpay.current.request(payload, 
 {% endtab %}
 {% endtabs %}
 
-## 기술문의&#x20;
+## 기술문의
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.

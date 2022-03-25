@@ -1,10 +1,10 @@
 # PG 오류 데이터 요청하기
 
-부트페이 SDK에서 extra 필드에서 추가적으로 데이터를 보내면 PG에서 오류가 났을 경우 PG 오류 데이터를 추가로 수집하실 수 있습니다. 필요시 extra에  raw\_data를 true 값으로 보내시면 되겠습니다. &#x20;
+부트페이 SDK에서 extra 필드에서 추가적으로 데이터를 보내면 PG에서 오류가 났을 경우 PG 오류 데이터를 추가로 수집하실 수 있습니다. 필요시 extra에 raw\_data를 true 값으로 보내시면 되겠습니다.
 
-## 클라이언트 사이드에서 요청하기&#x20;
+## 클라이언트 사이드에서 요청하기
 
-[일반결제](../client/pg/), [통합결제](../client/total.md) 사용시 클라이언트 사이드에서 요청할 수 있습니다.&#x20;
+[일반결제](../client/pg/), [통합결제](../client/total.md) 사용시 클라이언트 사이드에서 요청할 수 있습니다.
 
 {% tabs %}
 {% tab title="Javascript" %}
@@ -59,7 +59,6 @@ Bootpay().request(
 
 {% tab title="React Native" %}
 ```jsx
-
 const bootpay = useRef<BootpayWebView>(null);
 
 const payload = {
@@ -73,9 +72,9 @@ if(bootpay != null && bootpay.current != null) bootpay.current.request(payload, 
 {% endtab %}
 {% endtabs %}
 
-## **서버사이드에서 요청하기**&#x20;
+## **서버사이드에서 요청하기**
 
-[정기결제](../client/subscription/) 사용시 서버사이드에서 요청할 수 있습니다.&#x20;
+[정기결제](../client/subscription/) 사용시 서버사이드에서 요청할 수 있습니다.
 
 {% tabs %}
 {% tab title="PHP" %}
@@ -252,7 +251,7 @@ if token['status'] is 200:
 {% endtab %}
 
 {% tab title="Java" %}
-## 설치하기
+### 설치하기
 
 [Gradle](https://gradle.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-java) 코드 보기)
 
@@ -269,7 +268,7 @@ dependencies {
 ```
 {% endcode %}
 
-## 사용 예제
+### 사용 예제
 
 ```java
 import kr.co.bootpay.Bootpay;
@@ -290,13 +289,13 @@ void getAccessToken() {
 {% endtab %}
 
 {% tab title="Go" %}
-## 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
+### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
 
 ```javascript
 go get github.com/bootpay/backend-go
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```go
 package main
@@ -324,15 +323,15 @@ func main() {
 {% endtab %}
 
 {% tab title="ASP.NET" %}
-### 1. Visual Studio에서 추가하기
+#### 1. Visual Studio에서 추가하기
 
-1\. 솔루션 탐색기(Solution Explorer) 열기 \
-2\. 만드신 솔루션 프로젝트 우클릭 \
-3\. Manage Nuget Packages 클릭 \
-4-1.  '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
-4-2.  또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
+1\. 솔루션 탐색기(Solution Explorer) 열기\
+2\. 만드신 솔루션 프로젝트 우클릭\
+3\. Manage Nuget Packages 클릭\
+4-1. '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
+4-2. 또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
 
-## 2. 사용 예제&#x20;
+### 2. 사용 예제
 
 ```javascript
 BootpayApi api = new BootpayApi("5b8f6a4d396fa665fdc2b5ea", "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=");
@@ -368,6 +367,6 @@ return Ok(json);
 
 위 예제와 같이 나이스페이에서 오류가 났을 경우 **HTTP Status 500 오류**가 발생되고 response body안 data에 PG에서 리턴한 오류를 확인할 수 있습니다.
 
-## 기술문의&#x20;
+## 기술문의
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.

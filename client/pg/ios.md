@@ -1,16 +1,16 @@
 # iOS
 
-Native 방식으로 iOS 앱을 만들때 이 페이지를 참조하시면 됩니다.&#x20;
+Native 방식으로 iOS 앱을 만들때 이 페이지를 참조하시면 됩니다.
 
-PG 결제창은 기본적으로 Javascript로 연동됩니다. 부트페이 iOS SDK는 내부적으로 Webview 방식으로 구현하였으며, 사용방법은 아래와 같습니다.&#x20;
+PG 결제창은 기본적으로 Javascript로 연동됩니다. 부트페이 iOS SDK는 내부적으로 Webview 방식으로 구현하였으며, 사용방법은 아래와 같습니다.
 
 {% hint style="info" %}
-iOS 10 버전부터는 보안정책으로 **LSApplicationQueriesSchemes** 을 통하여 사용하고자 하는 URL scheme들을 등록하길 권장합니다.  하지만 부트페이에서는 각 은행사들의 scheme를 변경/추가/삭제에 대응하기 어렵다고 판단하여,  custom URL scheme 요청시 WKWebView에서 앱투앱 처리를 합니다. 코드가 궁금하신 분들인[ 이 곳](https://github.com/bootpay/SwiftyBootpay/blob/master/SwiftyBootpay/Classes/BootpayWebView.swift)을 참고하세요
+iOS 10 버전부터는 보안정책으로 **LSApplicationQueriesSchemes** 을 통하여 사용하고자 하는 URL scheme들을 등록하길 권장합니다. 하지만 부트페이에서는 각 은행사들의 scheme를 변경/추가/삭제에 대응하기 어렵다고 판단하여, custom URL scheme 요청시 WKWebView에서 앱투앱 처리를 합니다. 코드가 궁금하신 분들인[ 이 곳](https://github.com/bootpay/SwiftyBootpay/blob/master/SwiftyBootpay/Classes/BootpayWebView.swift)을 참고하세요
 {% endhint %}
 
-## Bootpay 설치하기&#x20;
+## Bootpay 설치하기
 
-먼저 ObjectC, Swift로 부트페이를 설치하기 위해서는 [이곳](broken-reference)을 참조해주세요. 설치하기 가이드 `ios` 를 참조해주세요.&#x20;
+먼저 ObjectC, Swift로 부트페이를 설치하기 위해서는 [이곳](broken-reference/)을 참조해주세요. 설치하기 가이드 `ios` 를 참조해주세요.
 
 ```
 pod 'Bootpay'  // object-C 또는 swift로 연동시 
@@ -20,11 +20,9 @@ pod 'Bootpay'  // object-C 또는 swift로 연동시
 pod 'BootpayUI' // swiftUI 또는 생체인증(Touch ID) 결제 이용시 
 ```
 
-&#x20;
-
 ## 프로젝트 설정하기
 
-결제 진행시 카드사앱 호출 후 기존 앱으로 돌아오기 위해서는 `info.plist`에서 `CFBundleURLName` 설정을 해주셔야 합니다. 들어갈 값은 Custom 하게 설정하시면 되겠습니다.&#x20;
+결제 진행시 카드사앱 호출 후 기존 앱으로 돌아오기 위해서는 `info.plist`에서 `CFBundleURLName` 설정을 해주셔야 합니다. 들어갈 값은 Custom 하게 설정하시면 되겠습니다.
 
 {% tabs %}
 {% tab title="(iOS) info.plist" %}
@@ -72,7 +70,7 @@ pod 'BootpayUI' // swiftUI 또는 생체인증(Touch ID) 결제 이용시
 {% hint style="info" %}
 **카드사 앱 실행 후 개발중인 원래 앱으로 돌아오지 않는 경우**
 
-상단의 프로젝트 설정의 info.plist에서 CFBundleURLSchemes를 설정해주시면 부트페이 SDK가 해당 값을 읽어 extra.appScheme 에 값을 채워 결제데이터를 전송합니다.&#x20;
+상단의 프로젝트 설정의 info.plist에서 CFBundleURLSchemes를 설정해주시면 부트페이 SDK가 해당 값을 읽어 extra.appScheme 에 값을 채워 결제데이터를 전송합니다.
 {% endhint %}
 
 ## 결제창 띄우는 iOS 코드
@@ -80,7 +78,6 @@ pod 'BootpayUI' // swiftUI 또는 생체인증(Touch ID) 결제 이용시
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-
 //https://github.com/bootpay/ios_swift/blob/main/Example/Bootpay/NativeController.swift
 import UIKit
 import Bootpay
@@ -159,7 +156,6 @@ class NativeController: UIViewController {
             }
     }
 }
-
 
 ```
 {% endtab %}
@@ -247,7 +243,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
 ```
 {% endtab %}
 
@@ -328,7 +323,6 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 @end
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -336,7 +330,7 @@ struct ContentView_Previews: PreviewProvider {
 ## 결제진행 이벤트
 
 {% hint style="info" %}
-&#x20;결제 진행 상태에 따라 LifeCycle 함수가 실행됩니다. 각 함수에 대한 상세 설명은 아래를 참고하세요.
+결제 진행 상태에 따라 LifeCycle 함수가 실행됩니다. 각 함수에 대한 상세 설명은 아래를 참고하세요.
 {% endhint %}
 
 {% tabs %}
@@ -350,7 +344,7 @@ struct ContentView_Previews: PreviewProvider {
 
 에러가 난 경우 해당 함수를 통해 관련 에러 메세지를 사용자에게 보여줄 수 있습니다.
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -362,9 +356,9 @@ struct ContentView_Previews: PreviewProvider {
 {% endtab %}
 
 {% tab title="onCancel 함수" %}
-결제 진행 중 사용자가 PG 결제창에서 취소 혹은 닫기 버튼을 눌러 나온 경우 입니다. ****&#x20;
+결제 진행 중 사용자가 PG 결제창에서 취소 혹은 닫기 버튼을 눌러 나온 경우 입니다. \*\*\*\*
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -378,7 +372,7 @@ struct ContentView_Previews: PreviewProvider {
 {% tab title="onReady 함수" %}
 가상계좌 발급이 완료되면 호출되는 함수입니다. 가상계좌는 다른 결제와 다르게 입금할 계좌 번호 발급 이후 입금 후에 Feedback URL을 통해 통지가 됩니다. 발급된 가상계좌 정보를 ready 함수를 통해 확인하실 수 있습니다.
 
-&#x20; data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -418,7 +412,7 @@ struct ContentView_Previews: PreviewProvider {
 
 **\* 페이앱, 페이레터 PG는 이 함수가 실행되지 않고 바로 결제가 승인되는 PG 입니다. 참고해주시기 바랍니다.**
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -434,7 +428,7 @@ PG에서 거래 승인 이후에 호출 되는 함수입니다. 결제 완료 �
 이 함수가 호출 된 후 반드시 REST API를 통해 [결제검증](https://docs.bootpay.co.kr/rest/verify)을 수행해야합니다. data 포맷은 아래와 같습니다.
 
 {% hint style="warning" %}
-결제가 완료되더라도 클라이언트 상태에 따라서 브라우저가 종료되거나 reload 되는 등의 이슈가 있어서 done 이벤트를 못받을 수도 있습니다. 가장 확실한 처리 방법은 [webhook 통지시](../../webhook/server.md)에도 [결제검증](../../server/verify.md)을 하시어 아이템 지급이나 상품 발송 등의 비즈니스 로직을 수행하시면 더욱 완성도 있는 서비스 개발이 되시겠습니다.&#x20;
+결제가 완료되더라도 클라이언트 상태에 따라서 브라우저가 종료되거나 reload 되는 등의 이슈가 있어서 done 이벤트를 못받을 수도 있습니다. 가장 확실한 처리 방법은 [webhook 통지시](../../webhook/server.md)에도 [결제검증](../../server/verify.md)을 하시어 아이템 지급이나 상품 발송 등의 비즈니스 로직을 수행하시면 더욱 완성도 있는 서비스 개발이 되시겠습니다.
 {% endhint %}
 
 ```
@@ -473,11 +467,11 @@ PG에서 거래 승인 이후에 호출 되는 함수입니다. 결제 완료 �
 2. 가상계좌는 결제테스트하지 말아주세요.
 3. 휴대폰 결제는 이월될 경우 취소되지 않습니다.
 
-테스트로 결제를 하시더라도 실제 결제가 될 수 있습니다. 자동취소가 누락되어 취소되지 않을 수 있으니 테스트 결제는 소액으로 진행해주세요.&#x20;
+테스트로 결제를 하시더라도 실제 결제가 될 수 있습니다. 자동취소가 누락되어 취소되지 않을 수 있으니 테스트 결제는 소액으로 진행해주세요.
 
 가상계좌의 경우 계좌간 계좌이체 방식이기 때문에 이체간 비용이 발생하기에 PG사에서 정책적으로 가상계좌는 테스트 시 결제취소 기능을 제공하지 않습니다. 가상계좌를 테스트 하기 위해서는 PG사 가맹 후 발급받은 코드로 진행하시길 추천합니다.
 {% endhint %}
 
-## 기술문의&#x20;
+## 기술문의
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.

@@ -4,179 +4,159 @@
 
 ## **발급받은 빌링키로 결제하기 REST API**
 
-결제를 원하는 시점에, 원하는 금액으로 결제를 승인요청 할 수 있습니다.&#x20;
+결제를 원하는 시점에, 원하는 금액으로 결제를 승인요청 할 수 있습니다.
 
 {% swagger baseUrl="https://api.bootpay.co.kr" path="/subscribe/billing.json" method="post" summary="" %}
 {% swagger-description %}
 
 {% endswagger-description %}
 
-{% swagger-parameter in="body" name="billing_key" type="string" %}
+{% swagger-parameter in="body" name="billing_key" type="string" required="false" %}
 부트페이를 통해 발급받은 빌링키
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="item_name" type="string" %}
+{% swagger-parameter in="body" name="item_name" type="string" required="false" %}
 결제할 상품명
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="order_id" type="string" %}
+{% swagger-parameter in="body" name="order_id" type="string" required="false" %}
 개발사에서 관리하는 고유 거래 번호
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="price" type="integer" %}
+{% swagger-parameter in="body" name="price" type="integer" required="false" %}
 결제할 금액
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="quota" type="integer" %}
-할부 개월수  
+{% swagger-parameter in="body" name="quota" type="integer" required="false" %}
+할부 개월수
 
-\
+\\
 
+결제할 금액이 5만원 이상부터 설정 가능
 
-결제할 금액이 5만원 이상부터 설정 가능 
-
-\
-
+\\
 
 무이자 여부는 해당 PG사 공지사항을 참조해주세요
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="items" type="array" %}
-아래의 Object 형태를 Array 형태로 보냅니다 
+{% swagger-parameter in="body" name="items" type="array" required="false" %}
+아래의 Object 형태를 Array 형태로 보냅니다
 
-\
+\\
 
+구매시 통계를 위한 아이템 정보입니다.
 
-구매시 통계를 위한 아이템 정보입니다. 
+\\
 
-\
-
-
-(string) 
+(string)
 
 `item_name`
 
- \- 아이템 명
+\- 아이템 명
 
-\
+\\
 
-
-(integer) 
+(integer)
 
 `qty`
 
- \-  구매할 상품 수 
+\- 구매할 상품 수
 
-\
+\\
 
-
-(string) 
+(string)
 
 `unique`
 
- \- 개발사에서 관리하는 아이템 고유 유니크 값
+\- 개발사에서 관리하는 아이템 고유 유니크 값
 
-\
+\\
 
-
-(integer) 
+(integer)
 
 `price`
 
- \- 상품 하나당 금액 
+\- 상품 하나당 금액
 
-\
+\\
 
-
-(string) 
+(string)
 
 `cat1`
 
- \- 카테고리 1
+\- 카테고리 1
 
-\
+\\
 
-
-(string) 
+(string)
 
 `cat2`
 
- \- 카테고리 2
+\- 카테고리 2
 
-\
+\\
 
-
-(string) 
+(string)
 
 `cat3`
 
- \- 카테고리 3
+\- 카테고리 3
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="feedback_url" type="string" %}
+{% swagger-parameter in="body" name="feedback_url" type="string" required="false" %}
 결제 상태 변경시 (완료/취소) 통지받을 URL
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="feedback_content_type" type="string" %}
-feedback_url로 받을 content-type 설정 
+{% swagger-parameter in="body" name="feedback_content_type" type="string" required="false" %}
+feedback\_url로 받을 content-type 설정
 
-\
-
-
-
+\\
 
 `json`
 
- \- json으로 리턴
+\- json으로 리턴
 
-\
-
-
-
+\\
 
 `urlencoded`
 
- \- urlencoded로 리턴 
+\- urlencoded로 리턴
 
-\
+\\
 
-
-(기본: 
+(기본:
 
 `urlencoded`
 
 )
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="user_info" type="object" %}
+{% swagger-parameter in="body" name="user_info" type="object" required="false" %}
 payapp은 구매자명, 전화번호를 필수로 입력해야 합니다.
 
-\
+\\
 
-
-(string) 
+(string)
 
 `phone`
 
- \- 구매자 전화번호 
+\- 구매자 전화번호
 
-\
+\\
 
-
-(string) 
+(string)
 
 `username`
 
- \- 구매자명 
+\- 구매자명
 
-\
+\\
 
-
-(string) 
+(string)
 
 `email`
 
- \- 구매자 이메일
+\- 구매자 이메일
 {% endswagger-parameter %}
 
 {% swagger-response status="200" description="" %}
@@ -210,26 +190,26 @@ payapp은 구매자명, 전화번호를 필수로 입력해야 합니다.
 {% endswagger-response %}
 {% endswagger %}
 
-| Response Data  | 타입      | 설명                                                                                                                                                                                                                                                                                                                                                                                                    |
-| -------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| receipt\_id    | string  | <p>부트페이에서 발행한 영수증 고유값<br><strong>* 취소/결제확인 용도로 사용되는 값으로 데이터베이스에 저장해야합니다.</strong></p>                                                                                                                                                                                                                                                                                                                 |
-| price          | integer | 결제 승인된 금액                                                                                                                                                                                                                                                                                                                                                                                             |
-| card\_no       | string  | 승인된 카드 번호                                                                                                                                                                                                                                                                                                                                                                                             |
-| card\_code     | string  | 카드사 코드                                                                                                                                                                                                                                                                                                                                                                                                |
-| card\_name     | string  | 결제된 카드사 명                                                                                                                                                                                                                                                                                                                                                                                             |
-| card\_quota    | string  | 할부 기간                                                                                                                                                                                                                                                                                                                                                                                                 |
-| params         | string  | 결제시 요청했던 parameters                                                                                                                                                                                                                                                                                                                                                                                   |
-| item\_name     | string  | 판매되었던 아이템 이름                                                                                                                                                                                                                                                                                                                                                                                          |
-| order\_id      | string  | 결제 요청시 보냈던 주문 번호                                                                                                                                                                                                                                                                                                                                                                                      |
-| pg\_name       | string  | 결제된 PG사명                                                                                                                                                                                                                                                                                                                                                                                              |
-| pg             | string  | 결제된 PG사의 코드 값                                                                                                                                                                                                                                                                                                                                                                                         |
-| method         | string  | 결제 수단 코드 값                                                                                                                                                                                                                                                                                                                                                                                            |
-| method\_name   | string  | 결제수단 명                                                                                                                                                                                                                                                                                                                                                                                                |
-| requested\_at  | string  | 결제가 요청된 시간 ( +09:00 기준 )                                                                                                                                                                                                                                                                                                                                                                              |
-| purchased\_at  | string  | 결제된 시각 ( +09:00 기준 )                                                                                                                                                                                                                                                                                                                                                                                  |
-| status         | integer | <p></p><p>결제 상태</p><ul><li>0 - 결제 대기 상태입니다. 승인이 나기 전의 상태입니다.</li><li>1 - 결제 완료된 상태입니다.</li><li>2 - 결제승인 전 상태입니다. <br><code>transactionConfirm()</code> 함수를 호출하셔서 결제를 승인해야합니다.</li><li>3 - 결제승인 중 상태입니다. PG사에서 transaction 처리중입니다.</li><li>20 - 결제가 취소된 상태입니다.</li><li>-20 - 결제취소가 실패한 상태입니다.</li><li>-30 - 결제취소가 진행중인 상태입니다.</li><li>-1 - 오류로 인해 결제가 실패한 상태입니다.</li><li>-2 - 결제승인이 실패하였습니다.</li></ul> |
+| Response Data | 타입      | 설명                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| receipt\_id   | string  | <p>부트페이에서 발행한 영수증 고유값<br><strong>* 취소/결제확인 용도로 사용되는 값으로 데이터베이스에 저장해야합니다.</strong></p>                                                                                                                                                                                                                                                                                                         |
+| price         | integer | 결제 승인된 금액                                                                                                                                                                                                                                                                                                                                                                                     |
+| card\_no      | string  | 승인된 카드 번호                                                                                                                                                                                                                                                                                                                                                                                     |
+| card\_code    | string  | 카드사 코드                                                                                                                                                                                                                                                                                                                                                                                        |
+| card\_name    | string  | 결제된 카드사 명                                                                                                                                                                                                                                                                                                                                                                                     |
+| card\_quota   | string  | 할부 기간                                                                                                                                                                                                                                                                                                                                                                                         |
+| params        | string  | 결제시 요청했던 parameters                                                                                                                                                                                                                                                                                                                                                                           |
+| item\_name    | string  | 판매되었던 아이템 이름                                                                                                                                                                                                                                                                                                                                                                                  |
+| order\_id     | string  | 결제 요청시 보냈던 주문 번호                                                                                                                                                                                                                                                                                                                                                                              |
+| pg\_name      | string  | 결제된 PG사명                                                                                                                                                                                                                                                                                                                                                                                      |
+| pg            | string  | 결제된 PG사의 코드 값                                                                                                                                                                                                                                                                                                                                                                                 |
+| method        | string  | 결제 수단 코드 값                                                                                                                                                                                                                                                                                                                                                                                    |
+| method\_name  | string  | 결제수단 명                                                                                                                                                                                                                                                                                                                                                                                        |
+| requested\_at | string  | 결제가 요청된 시간 ( +09:00 기준 )                                                                                                                                                                                                                                                                                                                                                                      |
+| purchased\_at | string  | 결제된 시각 ( +09:00 기준 )                                                                                                                                                                                                                                                                                                                                                                          |
+| status        | integer | <p>결제 상태</p><ul><li>0 - 결제 대기 상태입니다. 승인이 나기 전의 상태입니다.</li><li>1 - 결제 완료된 상태입니다.</li><li>2 - 결제승인 전 상태입니다.<br><code>transactionConfirm()</code> 함수를 호출하셔서 결제를 승인해야합니다.</li><li>3 - 결제승인 중 상태입니다. PG사에서 transaction 처리중입니다.</li><li>20 - 결제가 취소된 상태입니다.</li><li>-20 - 결제취소가 실패한 상태입니다.</li><li>-30 - 결제취소가 진행중인 상태입니다.</li><li>-1 - 오류로 인해 결제가 실패한 상태입니다.</li><li>-2 - 결제승인이 실패하였습니다.</li></ul> |
 
-## 언어별 예제&#x20;
+## 언어별 예제
 
 {% tabs %}
 {% tab title="CURL" %}
@@ -242,7 +222,7 @@ curl -H "Content-Type: application/json" \
 {% endtab %}
 
 {% tab title="PHP" %}
-## 설치하기&#x20;
+### 설치하기
 
 [Composer](http://getcomposer.org)을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -250,10 +230,9 @@ curl -H "Content-Type: application/json" \
 composer require bootpay/backend-php
 ```
 
-## 사용 예제&#x20;
+### 사용 예제
 
 ```php
-
 <?php
 /*
  * 결제링크 생성하기 관련 예제입니다. 
@@ -283,7 +262,7 @@ if ($response->status === 200) {
 {% endtab %}
 
 {% tab title="Ruby" %}
-## 설치하기
+### 설치하기
 
 [Gemfile](https://rubygems.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -291,9 +270,9 @@ if ($response->status === 200) {
 gem 'backend-ruby'
 ```
 
-위 라인 추가 후 `bundle install` 실행&#x20;
+위 라인 추가 후 `bundle install` 실행
 
-## 사용 예제
+### 사용 예제
 
 ```php
 # 결제 검증하기 
@@ -318,13 +297,13 @@ end
 {% endtab %}
 
 {% tab title="Node.js" %}
-## NPM 통해 설치하기&#x20;
+### NPM 통해 설치하기
 
 ```c
 npm install bootpay-backend-nodejs
 ```
 
-## 사용예제&#x20;
+### 사용예제
 
 ```javascript
 async function subscribeBilling() {
@@ -355,7 +334,7 @@ async function subscribeBilling() {
 {% endtab %}
 
 {% tab title="Python" %}
-## 설치하기
+### 설치하기
 
 [Pypl](https://pypi.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-python) 코드 보기)
 
@@ -363,7 +342,7 @@ async function subscribeBilling() {
 pip install bootpay 
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```python
 from bootpay import Bootpay
@@ -385,7 +364,7 @@ print(result)
 {% endtab %}
 
 {% tab title="Java" %}
-## 설치하기
+### 설치하기
 
 [Gradle](https://gradle.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-java) 코드 보기)
 
@@ -402,7 +381,7 @@ dependencies {
 ```
 {% endcode %}
 
-## 사용 예제
+### 사용 예제
 
 ```java
 import kr.co.bootpay.Bootpay;
@@ -426,13 +405,13 @@ public static void requestSubscribe() {
 {% endtab %}
 
 {% tab title="Go" %}
-## 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
+### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
 
 ```javascript
 go get github.com/bootpay/backend-go
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```go
 package main
@@ -467,15 +446,15 @@ func RequestSubscribe(api *bootpay.Api) {
 {% endtab %}
 
 {% tab title="ASP.NET" %}
-### 1. Visual Studio에서 추가하기
+#### 1. Visual Studio에서 추가하기
 
-1\. 솔루션 탐색기(Solution Explorer) 열기 \
-2\. 만드신 솔루션 프로젝트 우클릭 \
-3\. Manage Nuget Packages 클릭 \
-4-1.  '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
-4-2.  또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
+1\. 솔루션 탐색기(Solution Explorer) 열기\
+2\. 만드신 솔루션 프로젝트 우클릭\
+3\. Manage Nuget Packages 클릭\
+4-1. '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
+4-2. 또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
 
-## 2. 사용 예제&#x20;
+### 2. 사용 예제
 
 ```javascript
 BootpayApi api = new BootpayApi("5b8f6a4d396fa665fdc2b5ea", "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=");
@@ -509,6 +488,6 @@ return Ok(json);
 {% endtab %}
 {% endtabs %}
 
-## 기술문의&#x20;
+## 기술문의
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.

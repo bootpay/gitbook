@@ -11,52 +11,44 @@
 
 {% endswagger-description %}
 
-{% swagger-parameter in="header" name="Access Token" type="string" %}
- 
-
+{% swagger-parameter in="header" name="Access Token" type="string" required="false" %}
 **부트페이에서 발급받은토큰 값**
-
-  
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="receipt_id" type="string" %}
+{% swagger-parameter in="body" name="receipt_id" type="string" required="false" %}
 부트페이에서 발급받은 거래 영수증 id
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="cancel_id" type="string" %}
+{% swagger-parameter in="body" name="cancel_id" type="string" required="false" %}
 부분 취소 중복을 막기 위한 값
 
-\
+\\
 
-
- 가맹점에서 지정하는 cancel_id를 보내면, 실수로 중복 요청한 경우 취소가 되지 않도록 방지처리 
+가맹점에서 지정하는 cancel\_id를 보내면, 실수로 중복 요청한 경우 취소가 되지 않도록 방지처리
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="price" type="string" %}
+{% swagger-parameter in="body" name="price" type="string" required="false" %}
 부분 취소할 취소금액, 금액을 적지 않으면 전책 취소 처리 됨
 
-\
+\\
 
+\* 1,000원보다 더 큰 값이어야 함
 
-\* 1,000원보다 더 큰 값이어야 함 
+\\
 
-\
+\* 일부 PG사만 가능
 
-
-\* 일부 PG사만 가능 
-
-\
-
+\\
 
 (inicis, kcp, danal, payletter, nicepay, kakao, payco)
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="name" type="string" %}
+{% swagger-parameter in="body" name="name" type="string" required="false" %}
 취소자 이름
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="reason" type="string" %}
-취소 사유 
+{% swagger-parameter in="body" name="reason" type="string" required="false" %}
+취소 사유
 {% endswagger-parameter %}
 
 {% swagger-response status="200" description="" %}
@@ -84,9 +76,9 @@
 (post) https://api.bootpay.co.kr/request/payment.json
 ```
 
-post body의 데이터포맷인 [payload 파라미터](broken-reference)와 [extra 파라미터](broken-reference)는 [일반결제](../client/pg/)와 동일합니다. 아래 예제를 참고해주세요.
+post body의 데이터포맷인 [payload 파라미터](broken-reference/)와 [extra 파라미터](broken-reference/)는 [일반결제](../client/pg/)와 동일합니다. 아래 예제를 참고해주세요.
 
-## 언어별 예제&#x20;
+## 언어별 예제
 
 {% tabs %}
 {% tab title="PHP" %}
@@ -116,12 +108,11 @@ if ($response->status === 200) {
         print($response->data); // 결제 링크 리턴값
     }
 }
-
 ```
 {% endtab %}
 
 {% tab title="PHP" %}
-## 설치하기&#x20;
+### 설치하기
 
 [Composer](http://getcomposer.org)을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -129,7 +120,7 @@ if ($response->status === 200) {
 composer require bootpay/backend-php
 ```
 
-## 사용 예제&#x20;
+### 사용 예제
 
 ```php
 <?php
@@ -176,7 +167,7 @@ if ($response->status === 200) {
 {% endtab %}
 
 {% tab title="Ruby" %}
-## 설치하기
+### 설치하기
 
 [Gemfile](https://rubygems.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -184,9 +175,9 @@ if ($response->status === 200) {
 gem 'backend-ruby'
 ```
 
-위 라인 추가 후 `bundle install` 실행&#x20;
+위 라인 추가 후 `bundle install` 실행
 
-## 사용 예제
+### 사용 예제
 
 ```php
 # 결제 검증하기 
@@ -213,13 +204,13 @@ end
 {% endtab %}
 
 {% tab title="Node.js" %}
-## NPM 통해 설치하기&#x20;
+### NPM 통해 설치하기
 
 ```c
 npm install bootpay-backend-nodejs
 ```
 
-## 사용예제&#x20;
+### 사용예제
 
 ```javascript
 async function requestPayment() {
@@ -253,7 +244,7 @@ async function requestPayment() {
 {% endtab %}
 
 {% tab title="Python" %}
-## 설치하기
+### 설치하기
 
 [Pypl](https://pypi.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-python) 코드 보기)
 
@@ -261,7 +252,7 @@ async function requestPayment() {
 pip install bootpay 
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```python
 from bootpay import Bootpay
@@ -285,7 +276,7 @@ print(result)
 {% endtab %}
 
 {% tab title="Java" %}
-## 설치하기
+### 설치하기
 
 [Gradle](https://gradle.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-java) 코드 보기)
 
@@ -302,7 +293,7 @@ dependencies {
 ```
 {% endcode %}
 
-## 사용 예제
+### 사용 예제
 
 ```java
 import kr.co.bootpay.Bootpay;
@@ -328,13 +319,13 @@ public static void requestLink() {
 {% endtab %}
 
 {% tab title="Go" %}
-## 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
+### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
 
 ```javascript
 go get github.com/bootpay/backend-go
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```go
 package main
@@ -371,15 +362,15 @@ func RequestLink(api *bootpay.Api) {
 {% endtab %}
 
 {% tab title="ASP.NET" %}
-### 1. Visual Studio에서 추가하기
+#### 1. Visual Studio에서 추가하기
 
-1\. 솔루션 탐색기(Solution Explorer) 열기 \
-2\. 만드신 솔루션 프로젝트 우클릭 \
-3\. Manage Nuget Packages 클릭 \
-4-1.  '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
-4-2.  또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
+1\. 솔루션 탐색기(Solution Explorer) 열기\
+2\. 만드신 솔루션 프로젝트 우클릭\
+3\. Manage Nuget Packages 클릭\
+4-1. '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
+4-2. 또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
 
-## 2. 사용 예제&#x20;
+### 2. 사용 예제
 
 ```javascript
 BootpayApi api = new BootpayApi("5b8f6a4d396fa665fdc2b5ea", "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=");
@@ -404,11 +395,10 @@ string json = JsonConvert.SerializeObject(res,
 
 
 return Ok(json);
-
 ```
 {% endtab %}
 {% endtabs %}
 
-## 기술문의&#x20;
+## 기술문의
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.

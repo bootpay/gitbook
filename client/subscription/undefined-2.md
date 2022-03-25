@@ -1,79 +1,76 @@
 # 3. 빌링키로 결제 예약하기
 
-****[ **** 빌링키로 결제 요청하기 API](undefined-1.md)를 사용할 경우 원하는 시점에 요청해야 하기 때문에 스케쥴러 등을 이용해야 한다는 특징이 있다면, 결제 예약하기 API의 경우 미리 결제시점을 등록할 수 있다는 특징이 있습니다. 결제 시점이 정해진 경 이 API를 사용하셔도 되겠습니다.
+\*\*\*\*[ \*\*\*\* 빌링키로 결제 요청하기 API](undefined-1.md)를 사용할 경우 원하는 시점에 요청해야 하기 때문에 스케쥴러 등을 이용해야 한다는 특징이 있다면, 결제 예약하기 API의 경우 미리 결제시점을 등록할 수 있다는 특징이 있습니다. 결제 시점이 정해진 경 이 API를 사용하셔도 되겠습니다.
 
 ## **빌링키로 결제 예약하기 REST API**
 
 {% swagger baseUrl="https://api.bootpay.co.kr" path="/subscribe/billing/reserve " method="post" summary="" %}
 {% swagger-description %}
- 요청 주소는 위와 같으며 payload 파라미터는 아래와 같습니다.  
+요청 주소는 위와 같으며 payload 파라미터는 아래와 같습니다.
 {% endswagger-description %}
 
-{% swagger-parameter in="body" name="billing_key" type="string" %}
+{% swagger-parameter in="body" name="billing_key" type="string" required="false" %}
 부트페이를 통해 발급받은 빌링키
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="item_name" type="string" %}
+{% swagger-parameter in="body" name="item_name" type="string" required="false" %}
 결제할 상품명
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="price" type="integer" %}
+{% swagger-parameter in="body" name="price" type="integer" required="false" %}
 결제할 금액
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="order_id" type="string" %}
+{% swagger-parameter in="body" name="order_id" type="string" required="false" %}
 개발사에서 관리하는 고유거래 번호
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="scheduler_type" type="string" %}
+{% swagger-parameter in="body" name="scheduler_type" type="string" required="false" %}
 
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="execute_at" type="string" %}
+{% swagger-parameter in="body" name="execute_at" type="string" required="false" %}
 
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="feedback_url" type="string" %}
-결제 상태 변경시 (완료/취소) 통지받을  URL
+{% swagger-parameter in="body" name="feedback_url" type="string" required="false" %}
+결제 상태 변경시 (완료/취소) 통지받을 URL
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="feedback_content_type" type="string" %}
-
-{% endswagger-parameter %}
-
-{% swagger-parameter in="body" name="items" type="string" %}
+{% swagger-parameter in="body" name="feedback_content_type" type="string" required="false" %}
 
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="user_info" type="object" %}
+{% swagger-parameter in="body" name="items" type="string" required="false" %}
+
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="user_info" type="object" required="false" %}
 payapp은 구매자명, 전화번호를 필수로 입력해야 합니다.
 
-\
+\\
 
-
-(string) 
+(string)
 
 `phone`
 
- \- 구매자 전화번호 
+\- 구매자 전화번호
 
-\
+\\
 
-
-(string) 
+(string)
 
 `username`
 
- \- 구매자명 
+\- 구매자명
 
-\
+\\
 
-
-(string) 
+(string)
 
 `email`
 
- \- 구매자 이메일
+\- 구매자 이메일
 {% endswagger-parameter %}
 
 {% swagger-response status="200" description="" %}
@@ -108,7 +105,7 @@ payapp은 구매자명, 전화번호를 필수로 입력해야 합니다.
 | execute\_at     | integer  | 다음 결제가 언제인지 나타냅니다. unixtime 숫자 값                                                                                                                                        |
 | status          | integer  | <p>현재 예약 결제의 상태입니다.</p><ul><li>0 - 예약 결제 대기중</li><li>1 - 결제가 모두 완료됨</li><li>2 - 예약결제 실행도중 에러남</li><li>-1 - 예약이 되지 않음</li><li>3 - 결제예약을 했으나 결제를 하지 않고 사용자가 취소함</li></ul> |
 
-## 언어별 예제&#x20;
+## 언어별 예제
 
 {% tabs %}
 {% tab title="CURL" %}
@@ -121,7 +118,7 @@ curl -H "Content-Type: application/json" \
 {% endtab %}
 
 {% tab title="PHP" %}
-## 설치하기&#x20;
+### 설치하기
 
 [Composer](http://getcomposer.org)을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -129,10 +126,9 @@ curl -H "Content-Type: application/json" \
 composer require bootpay/backend-php
 ```
 
-## 사용 예제&#x20;
+### 사용 예제
 
 ```php
-
 
 <?php
 /*
@@ -165,7 +161,7 @@ if ($response->status === 200) {
 {% endtab %}
 
 {% tab title="Ruby" %}
-## 설치하기
+### 설치하기
 
 [Gemfile](https://rubygems.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-php) 주소)
 
@@ -173,9 +169,9 @@ if ($response->status === 200) {
 gem 'backend-ruby'
 ```
 
-위 라인 추가 후 `bundle install` 실행&#x20;
+위 라인 추가 후 `bundle install` 실행
 
-## 사용 예제
+### 사용 예제
 
 ```php
 # 결제 검증하기 
@@ -203,13 +199,13 @@ end
 {% endtab %}
 
 {% tab title="Node.js" %}
-## NPM 통해 설치하기&#x20;
+### NPM 통해 설치하기
 
 ```c
 npm install bootpay-backend-nodejs
 ```
 
-## 사용예제&#x20;
+### 사용예제
 
 ```javascript
 async function subscribeBillingReserve() {
@@ -242,12 +238,11 @@ async function subscribeBillingReserve() {
         console.log(response)
     }
 }
-
 ```
 {% endtab %}
 
 {% tab title="Python" %}
-## 설치하기
+### 설치하기
 
 [Pypl](https://pypi.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-python) 코드 보기)
 
@@ -255,7 +250,7 @@ async function subscribeBillingReserve() {
 pip install bootpay 
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```python
 from bootpay import Bootpay
@@ -277,7 +272,7 @@ print(result)
 {% endtab %}
 
 {% tab title="Java" %}
-## 설치하기
+### 설치하기
 
 [Gradle](https://gradle.org) 을 통해 설치 ([Github](https://github.com/bootpay/backend-java) 코드 보기)
 
@@ -294,7 +289,7 @@ dependencies {
 ```
 {% endcode %}
 
-## 사용 예제
+### 사용 예제
 
 ```java
 import kr.co.bootpay.Bootpay;
@@ -323,13 +318,13 @@ public static void reserveSubscribe() {
 {% endtab %}
 
 {% tab title="Go" %}
-## 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
+### 설치하기 ([Github](https://github.com/bootpay/backend-go) 주소)
 
 ```javascript
 go get github.com/bootpay/backend-go
 ```
 
-## 사용 예제
+### 사용 예제
 
 ```go
 package main
@@ -364,15 +359,15 @@ func RequestSubscribe(api *bootpay.Api) {
 {% endtab %}
 
 {% tab title="ASP.NET" %}
-### 1. Visual Studio에서 추가하기
+#### 1. Visual Studio에서 추가하기
 
-1\. 솔루션 탐색기(Solution Explorer) 열기 \
-2\. 만드신 솔루션 프로젝트 우클릭 \
-3\. Manage Nuget Packages 클릭 \
-4-1.  '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
-4-2.  또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
+1\. 솔루션 탐색기(Solution Explorer) 열기\
+2\. 만드신 솔루션 프로젝트 우클릭\
+3\. Manage Nuget Packages 클릭\
+4-1. '[Bootpay.framework](https://www.nuget.org/packages/Bootpay.framework)' (.net standard 2.0 이상)\
+4-2. 또는 '[Bootpay.net](https://www.nuget.org/packages/Bootpay.net)' (.net core 3.1 이상)
 
-## 2. 사용 예제&#x20;
+### 2. 사용 예제
 
 ```javascript
 BootpayApi api = new BootpayApi("5b8f6a4d396fa665fdc2b5ea", "rm6EYECr6aroQVG2ntW0A6LpWnkTgP4uQ3H18sDDUYw=");
@@ -402,6 +397,6 @@ return Ok(json);
 {% endtab %}
 {% endtabs %}
 
-## 기술문의&#x20;
+## 기술문의
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.

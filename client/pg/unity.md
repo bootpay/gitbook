@@ -1,20 +1,18 @@
 # Unity
 
-구글의 정책변화로 구글 앱스토어에서도 PG결제가 가능하며, Unity로 PG 연동하실 때 이 페이지를 참조하시면 됩니다.&#x20;
+구글의 정책변화로 구글 앱스토어에서도 PG결제가 가능하며, Unity로 PG 연동하실 때 이 페이지를 참조하시면 됩니다.
 
-Unity를 통해 배포된 android, ios 환경에서 PG결제가 가능하도록 [bootpay.unitypackage](https://github.com/bootpay/bootpay-unitypackage/raw/main/bootpay.unitypackage)를 제공합니다.&#x20;
+Unity를 통해 배포된 android, ios 환경에서 PG결제가 가능하도록 [bootpay.unitypackage](https://github.com/bootpay/bootpay-unitypackage/raw/main/bootpay.unitypackage)를 제공합니다.
 
-## Bootpay 설치하기&#x20;
-
-
+## Bootpay 설치하기
 
 현재 유니티 에셋스토어에는 `bootpay` 로 배포되어있습니다만 관리되지 않으므로,[ ](https://docs.bootpay.co.kr/unity/bootpay.unitypackage)[bootpay.unitypackage](https://github.com/bootpay/bootpay-unitypackage/raw/main/bootpay.unitypackage)를 이곳에서 직접 다운로드 받도록 합니다.
 
-![](<../../.gitbook/assets/스크린샷 2021-12-07 오전 11.26.55 (1).png>)
+![](<../../.gitbook/assets/스크린샷 2021-12-07 오전 11.26.55.png>)
 
-다운 받은 파일을 프로젝트에 드래그하여 인스톨 하면, 라이브러리와 **샘플(Assets/Scenes/ButtonScript.cs)**가 보입니다. BootpayViewObject (Assets/Plugins/BootpayViewObject.cs)는 수정하실 필요 없으시며, 결제연동은 **샘플 Script**를 참조하시면 되겠습니다.
+다운 받은 파일을 프로젝트에 드래그하여 인스톨 하면, 라이브러리와 \*\*샘플(Assets/Scenes/ButtonScript.cs)\*\*가 보입니다. BootpayViewObject (Assets/Plugins/BootpayViewObject.cs)는 수정하실 필요 없으시며, 결제연동은 **샘플 Script**를 참조하시면 되겠습니다.
 
-## 결제창 띄우는 Unity 코드&#x20;
+## 결제창 띄우는 Unity 코드
 
 ```
 using System.Collections;
@@ -147,12 +145,11 @@ public class ButtonScript : MonoBehaviour
 
 {% tabs %}
 {% tab title="Android" %}
-1. File > Build Setting > Android 에서 빌드하여 Android Project로 export 합니다.&#x20;
-2. export한 폴더를 Android Studio와 같은 IDE로 Open 합니다&#x20;
+1. File > Build Setting > Android 에서 빌드하여 Android Project로 export 합니다.
+2. export한 폴더를 Android Studio와 같은 IDE로 Open 합니다
 3. [build.gradle](https://github.com/bootpay/unity-android-example/blob/main/unityLibrary/build.gradle) (android.unityLibrary)에 dependencies를 추가합니다.\
-   ![](<../../.gitbook/assets/스크린샷 2022-03-02 오전 9.12.53.png>)
-4.  unityLibrary 프로젝트의 [AndroidManifest.xml](https://github.com/bootpay/unity-android-example/blob/main/unityLibrary/src/main/AndroidManifest.xml) 파일을 수정합니다.\
-
+   ![](<../../.gitbook/assets/스크린샷 2022-03-02 오전 9.12.53 (3).png>)
+4.  unityLibrary 프로젝트의 [AndroidManifest.xml](https://github.com/bootpay/unity-android-example/blob/main/unityLibrary/src/main/AndroidManifest.xml) 파일을 수정합니다.\\
 
     ```
     //1. useCleartextTraffic 추가 
@@ -166,11 +163,10 @@ public class ButtonScript : MonoBehaviour
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
       
     //3. queries 추가, 내용은 AndroidManifest.xml 상단 링크 참조 
-
     ```
 
     \
-    ![](<../../.gitbook/assets/스크린샷 2022-03-02 오전 9.14.52.png>)
+    ![](<../../.gitbook/assets/스크린샷 2022-03-02 오전 9.14.52 (2).png>)
 5. [gradle.properties](https://github.com/bootpay/unity-android-example/blob/main/gradle.properties) (Project Properties) 파일에 AndroidX 지원 설정을 추가합니다.\
    ![](<../../.gitbook/assets/스크린샷 2022-03-02 오전 10.01.43.png>)
 6. 필요시 unity 버전과 android gradle plugin 버전 [호환](https://docs.unity3d.com/Manual/android-gradle-overview.html)을 확인하여 [gradle 버전](https://github.com/bootpay/unity-android-example/blob/main/build.gradle)을 수정합니다.\
@@ -179,23 +175,23 @@ public class ButtonScript : MonoBehaviour
 {% endtab %}
 
 {% tab title="iOS " %}
-1. File > Build Setting > iOS 에서 빌드하여 Xcode Project로 export 합니다.&#x20;
+1. File > Build Setting > iOS 에서 빌드하여 Xcode Project로 export 합니다.
 2. export한 ios폴더의 Unity-iPhone.xcodeproj 파일을 열어 xcode를 실행합니다.
-3. Targets > Unity-iPhone > Signing & Capabilities 에서 개발자 프로파일, bundle identifier를 설정합니다 \
+3. Targets > Unity-iPhone > Signing & Capabilities 에서 개발자 프로파일, bundle identifier를 설정합니다\
    \
-   ![](<../../.gitbook/assets/스크린샷 2021-12-07 오전 9.13.03 (1).png>)![](<../../.gitbook/assets/스크린샷 2022-02-17 오전 11.36.37.png>)
+   ![](<../../.gitbook/assets/스크린샷 2021-12-07 오전 9.13.03.png>)![](<../../.gitbook/assets/스크린샷 2022-02-17 오전 11.36.37.png>)
 4. Targets > Unity-iPhone > Build Settings에서 Development Team 설정합니다 (build clean)\
    ![](<../../.gitbook/assets/스크린샷 2021-12-07 오전 9.13.16.png>)
 5. Targets > UnityFramework > General > Frameworks and Libraries에 WebKit.framework를 추가합니다.\
    ![](<../../.gitbook/assets/스크린샷 2021-12-07 오후 12.01.01.png>)
-6. 빌드 후 실행합니다.&#x20;
+6. 빌드 후 실행합니다.
 {% endtab %}
 {% endtabs %}
 
 ## 결제진행 이벤트
 
 {% hint style="info" %}
-&#x20;결제 진행 상태에 따라 LifeCycle 함수가 실행됩니다. 각 함수에 대한 상세 설명은 아래를 참고하세요.
+결제 진행 상태에 따라 LifeCycle 함수가 실행됩니다. 각 함수에 대한 상세 설명은 아래를 참고하세요.
 {% endhint %}
 
 {% tabs %}
@@ -209,7 +205,7 @@ public class ButtonScript : MonoBehaviour
 
 에러가 난 경우 해당 함수를 통해 관련 에러 메세지를 사용자에게 보여줄 수 있습니다.
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -221,9 +217,9 @@ public class ButtonScript : MonoBehaviour
 {% endtab %}
 
 {% tab title="cancel 함수" %}
-결제 진행 중 사용자가 PG 결제창에서 취소 혹은 닫기 버튼을 눌러 나온 경우 입니다. ****&#x20;
+결제 진행 중 사용자가 PG 결제창에서 취소 혹은 닫기 버튼을 눌러 나온 경우 입니다. \*\*\*\*
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -237,7 +233,7 @@ public class ButtonScript : MonoBehaviour
 {% tab title="ready 함수" %}
 가상계좌 발급이 완료되면 호출되는 함수입니다. 가상계좌는 다른 결제와 다르게 입금할 계좌 번호 발급 이후 입금 후에 Feedback URL을 통해 통지가 됩니다. 발급된 가상계좌 정보를 ready 함수를 통해 확인하실 수 있습니다.
 
-&#x20; data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -277,7 +273,7 @@ public class ButtonScript : MonoBehaviour
 
 **\* 페이앱, 페이레터 PG는 이 함수가 실행되지 않고 바로 결제가 승인되는 PG 입니다. 참고해주시기 바랍니다.**
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -293,7 +289,7 @@ PG에서 거래 승인 이후에 호출 되는 함수입니다. 결제 완료 �
 이 함수가 호출 된 후 반드시 REST API를 통해 [결제검증](https://docs.bootpay.co.kr/rest/verify)을 수행해야합니다. data 포맷은 아래와 같습니다.
 
 {% hint style="warning" %}
-결제가 완료되더라도 클라이언트 상태에 따라서 브라우저가 종료되거나 reload 되는 등의 이슈가 있어서 done 이벤트를 못받을 수도 있습니다. 가장 확실한 처리 방법은 [webhook 통지시](../../webhook/server.md)에도 [결제검증](../../server/verify.md)을 하시어 아이템 지급이나 상품 발송 등의 비즈니스 로직을 수행하시면 더욱 완성도 있는 서비스 개발이 되시겠습니다.&#x20;
+결제가 완료되더라도 클라이언트 상태에 따라서 브라우저가 종료되거나 reload 되는 등의 이슈가 있어서 done 이벤트를 못받을 수도 있습니다. 가장 확실한 처리 방법은 [webhook 통지시](../../webhook/server.md)에도 [결제검증](../../server/verify.md)을 하시어 아이템 지급이나 상품 발송 등의 비즈니스 로직을 수행하시면 더욱 완성도 있는 서비스 개발이 되시겠습니다.
 {% endhint %}
 
 ```
@@ -327,9 +323,6 @@ PG에서 거래 승인 이후에 호출 되는 함수입니다. 결제 완료 �
 
 ##
 
+## 기술문의
 
-
-## 기술문의&#x20;
-
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
-
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.
