@@ -6,7 +6,7 @@
 
 ## 결제 연동하기 <a href="#client" id="client"></a>
 
-* [요청 파라미터](client/payload.md)
+* [요청파라미터](client/payload.md)
 * [일반결제](client/pg/README.md)
   * [Web](client/pg/web.md)
   * [Android](client/pg/android.md)

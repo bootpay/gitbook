@@ -28,7 +28,7 @@ BootPay.transactionConfirm(data);
 
 서버에서 결제승인을 진행하는 방식이 단일 Transaction 결제승인 방식이라 할 수 있겠습니다. 전체적인 흐름은 아래와 같습니다.
 
-![서버승인 전체 흐름도](../.gitbook/assets/서버승인.png)
+![서버승인 전체 흐름도](../.gitbook/assets/서버승인.png)
 
 ## 서버사이드에서 결제승인 요청하기
 
