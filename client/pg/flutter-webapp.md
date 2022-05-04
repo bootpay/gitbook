@@ -1,14 +1,10 @@
 # Flutter (웹앱)
 
-Web에 구현된 서비스가 있고, Flutter에서는 Webview로 구현된 Web에 링크할때 이 페이지를 참조하시면 됩니다.
+Web에 구현된 서비스가 있고, Flutter에서는 Webview로 구현된 Web에 링크할때 이 페이지를 참조하시면 됩니다.&#x20;
 
-금융감독원에서는 온라인 신용카드 결제시 안심클릭 또는 ISP 안전결제를 권고하며, 이에 따라 카드사의 앱카드 앱이 앱투앱 방식으로 호출됩니다. 그러므로 웹뷰에서 Android, iOS 대응을 위한 외부앱 호출 및 통신을 위한 처리를 해주셔야 하는데, [bootpay\_webview\_flutter](https://pub.dev/packages/bootpay\_webview\_flutter)를 사용하시면 쉽게 해결됩니다.
+금융감독원에서는 온라인 신용카드 결제시 안심클릭 또는 ISP 안전결제를 권고하며, 이에 따라 카드사의 앱카드 앱이 앱투앱 방식으로 호출됩니다. 그러므로 웹뷰에서 Android, iOS 대응을 위한 외부앱 호출 및 통신을 위한 처리를 해주셔야 하는데, [bootpay\_webview\_flutter](https://pub.dev/packages/bootpay\_webview\_flutter)를 사용하시면 쉽게 해결됩니다. &#x20;
 
-{% hint style="info" %}
-해당 라이브러리 적용하실때에는 꼭 부트페이에 버전문의를 주셔야 합니다. 기술문의 없이 적용시 결제진행이 정상동작 하지 않을 수 있습니다.
-{% endhint %}
-
-## Bootpay 설치하기
+## Bootpay 설치하기&#x20;
 
 {% tabs %}
 {% tab title="pubspec.yaml" %}
@@ -31,7 +27,7 @@ dependencies:
 Android는 별다른 설정이 필요하지 않습니다.
 
 {% hint style="info" %}
-실행시 Cleartext HTTP traffic to Your.Domain not permitted 와 같은 에러가 나온 경우
+실행시 Cleartext HTTP traffic to Your.Domain not permitted 와 같은 에러가 나온 경우&#x20;
 
 Android Developer의 [Opt out of cleartext traffic](https://developer.android.com/training/articles/security-config#CertificatePinning)를 보시면 안드로이드 Pie(API28)부터 `cleartext HTTP`를 비활성화한다고 합니다. 따라서 API28 이후에서 Http에 접근하려면 `cleartext HTTP`를 활성화 시켜야 합니다.
 
@@ -150,6 +146,7 @@ class _WebViewExampleState extends State<WebViewExample> {
     );
   }
 }
+
 ```
 
 {% hint style="info" %}
@@ -163,11 +160,11 @@ navigationDelegate: (NavigationRequest request) {
 {% endhint %}
 
 {% hint style="info" %}
-[bootpay\_webview\_flutter](https://pub.dev/packages/bootpay\_webview\_flutter) 는 [webview\_flutter](https://pub.dev/packages/webview\_flutter)를 fork하여 빌드한 plugin 입니다. 한 프로젝트에 두가지 plugin을 함께 사용해도 충돌나지 않으며, webviewflutter 대신 bootpay\_webview\_flutter 만을 사용하셔도 무방합니다.
+[ bootpay\_webview\_flutter](https://pub.dev/packages/bootpay\_webview\_flutter) 는 [webview\_flutter](https://pub.dev/packages/webview\_flutter)를 fork하여 빌드한 plugin 입니다. 한 프로젝트에 두가지 plugin을 함께 사용해도 충돌나지 않으며, webviewflutter 대신 bootpay\_webview\_flutter 만을 사용하셔도 무방합니다.
 {% endhint %}
 
 {% hint style="info" %}
-결제 진행 상태 및 결과는 구현하신 웹 페이지에 의존하면 되므로, Flutter (웹앱)에서는 신경쓸게 없습니다. 결제 테스트 시 카드사 앱이 정상 호출되어 동작하여 결제가 이루어지는지 확인해주시면 되겠습니다.
+&#x20; 결제 진행 상태 및 결과는 구현하신 웹 페이지에 의존하면 되므로, Flutter (웹앱)에서는 신경쓸게 없습니다. 결제 테스트 시 카드사 앱이 정상 호출되어 동작하여 결제가 이루어지는지 확인해주시면 되겠습니다.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -177,11 +174,11 @@ navigationDelegate: (NavigationRequest request) {
 2. 가상계좌는 결제테스트하지 말아주세요.
 3. 휴대폰 결제는 이월될 경우 취소되지 않습니다.
 
-테스트로 결제를 하시더라도 실제 결제가 될 수 있습니다. 자동취소가 누락되어 취소되지 않을 수 있으니 테스트 결제는 소액으로 진행해주세요.
+테스트로 결제를 하시더라도 실제 결제가 될 수 있습니다. 자동취소가 누락되어 취소되지 않을 수 있으니 테스트 결제는 소액으로 진행해주세요.&#x20;
 
 가상계좌의 경우 계좌간 계좌이체 방식이기 때문에 이체간 비용이 발생하기에 PG사에서 정책적으로 가상계좌는 테스트 시 결제취소 기능을 제공하지 않습니다. 가상계좌를 테스트 하기 위해서는 PG사 가맹 후 발급받은 코드로 진행하시길 추천합니다.
 {% endhint %}
 
-## 기술문의
+## 기술문의&#x20;
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
