@@ -10,52 +10,25 @@ PG 결제창은 기본적으로 Javascript로 연동됩니다. 부트페이 Andr
 
 {% tabs %}
 {% tab title="Android" %}
-bootpay 모듈은 [jipack](https://jitpack.io)을 통해 배포되었습니다. [bootpay github](https://github.com/bootpay/android)은 [이곳](https://github.com/bootpay/android)을 참조하세요.
+bootpay 모듈은 [maven](https://mvnrepository.com/search?q=bootpay)을 통해 배포되었습니다. [bootpay github](https://github.com/bootpay/android)은 [이곳](https://github.com/bootpay/android)을 참조하세요.
 
 #### Gradle을 통한 설치
 
 ```groovy
-//build.gradle (project)
-buildscript {
-    repositories {
-        ...
-        jcenter()
-    }
-    dependencies {
-        ...
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1' // 비공식 해결 방법, gradle build error 가 발생시에만 추가
- 
-    }
-}
-
-allprojects {
-    repositories {
-        ...
-        jcenter()
-        maven {
-            url "https://jitpack.io"
-        }
-    }
-}
-```
-
-```groovy
 //build.gradle (module)
-
 android {
-    compileSdkVersion 30 //Android 11 지원을 위한 30 이상 버전을 추천 
-    buildToolsVersion "30.0.3"
+    compileSdk 32 //Android 11 지원을 위한 30 이상 버전을 추천 
 
     defaultConfig {
         ...
-        minSdkVersion 16
-        targetSdkVersion 30 //Android 11 지원을 위한 30 이상 버전을 추천 
+        minSdk 16 //16 이상 버전 이상부터 지원  
+        targetSdk 32 //Android 11 지원을 위한 30 이상 버전을 추천 
     }
-    }
+}
 
 dependencies {
     ...
-    implementation 'com.github.bootpay:android:+' //최신 버전 추천
+    implementation 'io.github.bootpay:android:+' //최신 버전 추천
 }
 ```
 
@@ -67,7 +40,7 @@ dependencies {
 ```
 
 {% hint style="info" %}
-실행시 Cleartext HTTP traffic to Your.Domain not permitted 와 같은 에러가 나온 경우
+실행시 **Webpage not available. net:ERR\_CLEARTEXT\_NOT\_PERMITTED 에러일 때**&#x20;
 
 Android [네트워크 보안 구성](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted)에 따르면 안드로이드 9(API28)부터 cleartext traffic을 기본적으로를 비활성화한다고 합니다. 따라서 API 28 이후에서 Http에 접근하려면 cleartext traffic을 활성화 시켜야 합니다.
 
