@@ -10,52 +10,25 @@ PG 결제창은 기본적으로 Javascript로 연동됩니다. 부트페이 Andr
 
 {% tabs %}
 {% tab title="Android" %}
-bootpay 모듈은 [jipack](https://jitpack.io)을 통해 배포되었습니다. [bootpay github](https://github.com/bootpay/android)은 [이곳](https://github.com/bootpay/android)을 참조하세요.
+bootpay 모듈은 [maven](https://mvnrepository.com/search?q=bootpay)을 통해 배포되었습니다. [bootpay github](https://github.com/bootpay/android)은 [이곳](https://github.com/bootpay/android)을 참조하세요.
 
 #### Gradle을 통한 설치
 
 ```groovy
-//build.gradle (project)
-buildscript {
-    repositories {
-        ...
-        jcenter()
-    }
-    dependencies {
-        ...
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1' // 비공식 해결 방법, gradle build error 가 발생시에만 추가
- 
-    }
-}
-
-allprojects {
-    repositories {
-        ...
-        jcenter()
-        maven {
-            url "https://jitpack.io"
-        }
-    }
-}
-```
-
-```groovy
 //build.gradle (module)
-
 android {
-    compileSdkVersion 30 //Android 11 지원을 위한 30 이상 버전을 추천 
-    buildToolsVersion "30.0.3"
+    compileSdk 32 //Android 11 지원을 위한 30 이상 버전을 추천 
 
     defaultConfig {
         ...
-        minSdkVersion 16
-        targetSdkVersion 30 //Android 11 지원을 위한 30 이상 버전을 추천 
+        minSdk 16 //16 이상 버전 이상부터 지원  
+        targetSdk 32 //Android 11 지원을 위한 30 이상 버전을 추천 
     }
-    }
+}
 
 dependencies {
     ...
-    implementation 'com.github.bootpay:android:+' //최신 버전 추천
+    implementation 'io.github.bootpay:android:+' //최신 버전 추천
 }
 ```
 
@@ -67,7 +40,7 @@ dependencies {
 ```
 
 {% hint style="info" %}
-실행시 Cleartext HTTP traffic to Your.Domain not permitted 와 같은 에러가 나온 경우
+실행시 **Webpage not available. net:ERR\_CLEARTEXT\_NOT\_PERMITTED 에러일**&#x20;
 
 Android [네트워크 보안 구성](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted)에 따르면 안드로이드 9(API28)부터 cleartext traffic을 기본적으로를 비활성화한다고 합니다. 따라서 API 28 이후에서 Http에 접근하려면 cleartext traffic을 활성화 시켜야 합니다.
 
@@ -138,29 +111,35 @@ public class NativeActivity extends AppCompatActivity {
         BootpayAnalytics.init(this, application_id);
     }
 
+ 
     public void goRequest(View v) {
 
         BootUser user = new BootUser().setPhone("010-1234-5678"); // 구매자 정보
-        BootExtra extra = new BootExtra().setQuotas(new int[] {0,2,3}).setPopup(1).setQuickPopup(1);  // 일시불, 2개월, 3개월 할부 허용, 할부는 최대 12개월까지 사용됨 (5만원 이상 구매시 할부허용 범위)
+        BootExtra extra = new BootExtra()
+                .setCardQuota("0,2,3")  // 일시불, 2개월, 3개월 할부 허용, 할부는 최대 12개월까지 사용됨 (5만원 이상 구매시 할부허용 범위)
+                .setOpenType("popup");
+//                .setCarrier("SKT") //본인인증 시 고정할 통신사명, SKT,KT,LGT 중 1개만 가능
+//                .setAgeLimit(40); // 본인인증시 제한할 최소 나이 ex) 20 -> 20살 이상만 인증이 가능
+
         Double price = 1000d;
-        try {
-            price = Double.parseDouble(edit_price.getText().toString());
-        } catch (Exception e){}
+        String pg = "kcp";
+        String method = "card";
 
 
-        String pg = BootpayValueHelper.pgToString(spinner_pg.getSelectedItem().toString());
-        String method = BootpayValueHelper.methodToString(spinner_method.getSelectedItem().toString());
 
-
+        //통계용 데이터 추가
         List<BootItem> items = new ArrayList<>();
-        BootItem item1 = new BootItem().setItemName("마우's 스").setUnique("ITEM_CODE_MOUSE").setQty(1).setPrice(500d);
-        BootItem item2 = new BootItem().setItemName("키보드").setUnique("ITEM_KEYBOARD_MOUSE").setQty(1).setPrice(500d);
+        BootItem item1 = new BootItem().setName("마우's 스").setId("ITEM_CODE_MOUSE").setQty(1).setPrice(500d);
+        BootItem item2 = new BootItem().setName("키보드").setId("ITEM_KEYBOARD_MOUSE").setQty(1).setPrice(500d);
         items.add(item1);
         items.add(item2);
 
+//        String value = "{\"application_id\":\"5b8f6a4d396fa665fdc2b5e8\",\"pg\":\"\",\"method\":\"\",\"methods\":[\"easy_card\",\"easy_bank\",\"card\",\"phone\",\"bank\",\"vbank\"],\"name\":\"블링블링's 마스카라\",\"price\":1000.0,\"tax_free\":0.0,\"order_id\":\"1234_1234_1243\",\"use_order_id\":0,\"account_expire_at\":\"\",\"show_agree_window\":0,\"paramJson\":\"\",\"user_token\":\"\",\"extra\":{\"start_at\":\"\",\"end_at\":\"\",\"expire_month\":0,\"vbank_result\":0,\"quotas\":[],\"app_scheme\":\"\",\"app_scheme_host\":\"\",\"locale\":\"\",\"popup\":0,\"escrow\":0},\"user_info\":{\"user_id\":\"\",\"username\":\"홍길동\",\"email\":\"testUser@email.com\",\"gender\":0,\"birth\":\"\",\"phone\":\"01012345678\",\"area\":\"서울\"},\"items\":[{\"item_name\":\"미키 마우스\",\"qty\":1,\"unique\":\"ITEM_CODE_MOUSE\",\"price\":1000.0,\"cat1\":\"\",\"cat2\":\"\",\"cat3\":\"\"},{\"item_name\":\"키보드\",\"qty\":1,\"unique\":\"ITEM_CODE_KEYBOARD\",\"price\":1000.0,\"cat1\":\"패션\",\"cat2\":\"여성상의\",\"cat3\":\"블라우스\"}]}";
+//        Payload payload = Payload.fromJson(value);
+
         Payload payload = new Payload();
         payload.setApplicationId(application_id)
-                .setName("맥\"북프로's 임다")
+                .setOrderName("부트페이 결제테스트")
                 .setPg(pg)
                 .setOrderId("1234")
                 .setMethod(method)
@@ -168,11 +147,12 @@ public class NativeActivity extends AppCompatActivity {
                 .setUser(user)
                 .setExtra(extra)
                 .setItems(items);
+
         Map<String, Object> map = new HashMap<>();
         map.put("1", "abcdef");
         map.put("2", "abcdef55");
         map.put("3", 1234);
-        payload.setParams(map);
+        payload.setParams(new Gson().toJson(map));
 
         Bootpay.init(getSupportFragmentManager(), getApplicationContext())
                 .setPayload(payload)
@@ -194,7 +174,7 @@ public class NativeActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onReady(String data) {
+                    public void onIssued(String data) {
                         Log.d("ready", data);
                     }
 
@@ -209,6 +189,11 @@ public class NativeActivity extends AppCompatActivity {
                     @Override
                     public void onDone(String data) {
                         Log.d("done", data);
+                    }
+
+                    @Override
+                    public void onCall(String data) {
+                        Log.d("call", data);
                     }
                 }).requestPayment();
     }
