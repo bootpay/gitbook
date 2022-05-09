@@ -1,10 +1,10 @@
 # Flutter
 
-Flutter 앱을 만들때 이 페이지를 참조하시면 됩니다.&#x20;
+Flutter 앱을 만들때 이 페이지를 참조하시면 됩니다.
 
-PG 결제창은 기본적으로 Javascript로 연동됩니다. 부트페이 Flutter SDK는 내부적으로 Webview 방식으로 구현하였으며, 사용방법은 아래와 같습니다.&#x20;
+PG 결제창은 기본적으로 Javascript로 연동됩니다. 부트페이 Flutter SDK는 내부적으로 Webview 방식으로 구현하였으며, 사용방법은 아래와 같습니다.
 
-## Bootpay 설치하기&#x20;
+## Bootpay 설치하기
 
 {% tabs %}
 {% tab title="pubspec.yaml" %}
@@ -27,7 +27,7 @@ dependencies:
 Android는 별다른 설정이 필요하지 않습니다.
 
 {% hint style="info" %}
-실행시 Cleartext HTTP traffic to Your.Domain not permitted 와 같은 에러가 나온 경우&#x20;
+실행시 **Webpage not available. net:ERR\_CLEARTEXT\_NOT\_PERMITTED 에러일 때**
 
 Android Developer의 [Opt out of cleartext traffic](https://developer.android.com/training/articles/security-config#CertificatePinning)를 보시면 안드로이드 Pie(API28)부터 `cleartext HTTP`를 비활성화한다고 합니다. 따라서 API28 이후에서 Http에 접근하려면 `cleartext HTTP`를 활성화 시켜야 합니다.
 
@@ -40,9 +40,9 @@ Android Developer의 [Opt out of cleartext traffic](https://developer.android.co
 {% endhint %}
 
 {% hint style="warning" %}
-만약 release 모드로 결제진행시 흰 화면 멈춤 현상이 있다면&#x20;
+만약 release 모드로 결제진행시 흰 화면 멈춤 현상이 있다면
 
-android/app/build.gradle에 아래 설정을 추가합니다.&#x20;
+android/app/build.gradle에 아래 설정을 추가합니다.
 
 ....
 
@@ -245,7 +245,7 @@ class _MyAppState extends State<MyApp> {
 ## 결제진행 이벤트
 
 {% hint style="info" %}
-&#x20;결제 진행 상태에 따라 LifeCycle 함수가 실행됩니다. 각 함수에 대한 상세 설명은 아래를 참고하세요.
+결제 진행 상태에 따라 LifeCycle 함수가 실행됩니다. 각 함수에 대한 상세 설명은 아래를 참고하세요.
 {% endhint %}
 
 {% tabs %}
@@ -259,7 +259,7 @@ class _MyAppState extends State<MyApp> {
 
 에러가 난 경우 해당 함수를 통해 관련 에러 메세지를 사용자에게 보여줄 수 있습니다.
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -271,9 +271,9 @@ class _MyAppState extends State<MyApp> {
 {% endtab %}
 
 {% tab title="onCancel 함수" %}
-결제 진행 중 사용자가 PG 결제창에서 취소 혹은 닫기 버튼을 눌러 나온 경우 입니다. ****&#x20;
+결제 진행 중 사용자가 PG 결제창에서 취소 혹은 닫기 버튼을 눌러 나온 경우 입니다. \*\*\*\*
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -285,9 +285,9 @@ class _MyAppState extends State<MyApp> {
 {% endtab %}
 
 {% tab title="onCloseHardware" %}
-결제 진행 중 사용자가 안드로이드 하드웨어 back 버튼을 눌러 나온 경우 입니다. ****&#x20;
+결제 진행 중 사용자가 안드로이드 하드웨어 back 버튼을 눌러 나온 경우 입니다. \*\*\*\*
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -300,7 +300,7 @@ class _MyAppState extends State<MyApp> {
 {% tab title="onReady 함수" %}
 가상계좌 발급이 완료되면 호출되는 함수입니다. 가상계좌는 다른 결제와 다르게 입금할 계좌 번호 발급 이후 입금 후에 Feedback URL을 통해 통지가 됩니다. 발급된 가상계좌 정보를 ready 함수를 통해 확인하실 수 있습니다.
 
-&#x20; data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -340,7 +340,7 @@ class _MyAppState extends State<MyApp> {
 
 **\* 페이앱, 페이레터 PG는 이 함수가 실행되지 않고 바로 결제가 승인되는 PG 입니다. 참고해주시기 바랍니다.**
 
-&#x20;data 포맷은 아래와 같습니다.
+data 포맷은 아래와 같습니다.
 
 ```
 {
@@ -356,7 +356,7 @@ PG에서 거래 승인 이후에 호출 되는 함수입니다. 결제 완료 �
 이 함수가 호출 된 후 반드시 REST API를 통해 [결제검증](https://docs.bootpay.co.kr/rest/verify)을 수행해야합니다. data 포맷은 아래와 같습니다.
 
 {% hint style="warning" %}
-결제가 완료되더라도 클라이언트 상태에 따라서 브라우저가 종료되거나 reload 되는 등의 이슈가 있어서 done 이벤트를 못받을 수도 있습니다. 가장 확실한 처리 방법은 [webhook 통지시](../../webhook/server.md)에도 [결제검증](../../server/verify.md)을 하시어 아이템 지급이나 상품 발송 등의 비즈니스 로직을 수행하시면 더욱 완성도 있는 서비스 개발이 되시겠습니다.&#x20;
+결제가 완료되더라도 클라이언트 상태에 따라서 브라우저가 종료되거나 reload 되는 등의 이슈가 있어서 done 이벤트를 못받을 수도 있습니다. 가장 확실한 처리 방법은 [webhook 통지시](../../webhook/server.md)에도 [결제검증](../../server/verify.md)을 하시어 아이템 지급이나 상품 발송 등의 비즈니스 로직을 수행하시면 더욱 완성도 있는 서비스 개발이 되시겠습니다.
 {% endhint %}
 
 ```
@@ -395,11 +395,11 @@ PG에서 거래 승인 이후에 호출 되는 함수입니다. 결제 완료 �
 2. 가상계좌는 결제테스트하지 말아주세요.
 3. 휴대폰 결제는 이월될 경우 취소되지 않습니다.
 
-테스트로 결제를 하시더라도 실제 결제가 될 수 있습니다. 자동취소가 누락되어 취소되지 않을 수 있으니 테스트 결제는 소액으로 진행해주세요.&#x20;
+테스트로 결제를 하시더라도 실제 결제가 될 수 있습니다. 자동취소가 누락되어 취소되지 않을 수 있으니 테스트 결제는 소액으로 진행해주세요.
 
 가상계좌의 경우 계좌간 계좌이체 방식이기 때문에 이체간 비용이 발생하기에 PG사에서 정책적으로 가상계좌는 테스트 시 결제취소 기능을 제공하지 않습니다. 가상계좌를 테스트 하기 위해서는 PG사 가맹 후 발급받은 코드로 진행하시길 추천합니다.
 {% endhint %}
 
-## 기술문의&#x20;
+## 기술문의
 
-이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.&#x20;
+이 섹션에 대해 궁금하신 부분은 [채팅](https://bootpay.channel.io)으로 문의주시면 감사하겠습니다.
