@@ -114,9 +114,7 @@ class NativeController: UIViewController {
         payload.pg = "payletter"
         payload.method = "card"
         payload.name = "테스트 아이템"
-        payload.extra = BootExtra()
-        payload.extra?.popup = 0
-        payload.extra?.quickPopup = 0
+        payload.extra = BootExtra() 
          
         let customParams: [String: String] = [
             "callbackParam1": "value12",
@@ -156,7 +154,6 @@ class NativeController: UIViewController {
             }
     }
 }
-
 ```
 {% endtab %}
 

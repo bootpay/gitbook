@@ -163,9 +163,7 @@ class _MyAppState extends State<MyApp> {
 
     Extra extra = Extra(); // 결제 옵션
     extra.appScheme = 'bootpayFlutterExample';
-    extra.quota = "0,2,3";
-    extra.popup = 1;
-    extra.quick_popup = 1;
+    extra.quota = "0,2,3"; 
 
     payload.user = user;
     payload.extra = extra;
